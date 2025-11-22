@@ -5,25 +5,34 @@
  *
  * @param {Object} props
  * @param {string} props.videoUrl - URL of the background video
+ * @param {string} props.mobileImage - URL of the fallback image for mobile
  * @param {string} props.title - Main hero title (Optional if using slots)
  * @param {string} props.subtitle - Hero subtitle/description (Optional if using slots)
  */
-const { videoUrl, title, subtitle } = Astro.props;
+const { videoUrl, mobileImage, title, subtitle } = Astro.props;
 ---
 
 <section class="relative w-full h-screen overflow-hidden">
   <!-- Background Video with optimized loading -->
   <video
-    class="absolute top-0 left-0 w-full h-full object-cover"
+    class="absolute top-0 left-0 w-full h-full object-cover hidden md:block"
     autoplay
     muted
     loop
     playsinline
     preload="auto"
+    poster={mobileImage}
   >
     <source src={videoUrl} type="video/mp4" />
     Your browser does not support the video tag.
   </video>
+
+  <!-- Mobile Image Fallback -->
+  <div
+    class="absolute inset-0 md:hidden bg-cover bg-center bg-no-repeat"
+    style={`background-image: url('${mobileImage}');`}
+  >
+  </div>
 
   <!-- Enhanced gradient overlay for better text readability -->
   <div

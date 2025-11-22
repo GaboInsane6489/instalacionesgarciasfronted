@@ -43,10 +43,28 @@ const { title = "Instalaciones García's" } = Astro.props;
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
     <meta property="og:title" content={title} />
     <meta
       property="og:description"
       content="Soluciones profesionales en instalaciones eléctricas y proyectos institucionales con calidad premium."
+    />
+    <meta
+      property="og:image"
+      content="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta
+      property="twitter:description"
+      content="Soluciones profesionales en instalaciones eléctricas y proyectos institucionales con calidad premium."
+    />
+    <meta
+      property="twitter:image"
+      content="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
     />
 
     <title>{title}</title>
@@ -217,35 +235,40 @@ const { title = "Instalaciones García's" } = Astro.props;
                   href="#"
                   class="hover:text-white transition-colors flex items-center gap-2"
                   ><span class="w-1 h-1 bg-white rounded-full"
-                  ></span>Instalaciones Eléctricas</a>
+                  ></span>Instalaciones Eléctricas</a
+                >
               </li>
               <li>
                 <a
                   href="#"
                   class="hover:text-white transition-colors flex items-center gap-2"
                   ><span class="w-1 h-1 bg-white rounded-full"
-                  ></span>Mantenimiento Industrial</a>
+                  ></span>Mantenimiento Industrial</a
+                >
               </li>
               <li>
                 <a
                   href="#"
                   class="hover:text-white transition-colors flex items-center gap-2"
                   ><span class="w-1 h-1 bg-white rounded-full"></span>Proyectos
-                  Institucionales</a>
+                  Institucionales</a
+                >
               </li>
               <li>
                 <a
                   href="#"
                   class="hover:text-white transition-colors flex items-center gap-2"
                   ><span class="w-1 h-1 bg-white rounded-full"></span>Drywall y
-                  Acabados</a>
+                  Acabados</a
+                >
               </li>
               <li>
                 <a
                   href="#"
                   class="hover:text-white transition-colors flex items-center gap-2"
                   ><span class="w-1 h-1 bg-white rounded-full"
-                  ></span>Consultoría Técnica</a>
+                  ></span>Consultoría Técnica</a
+                >
               </li>
             </ul>
           </div>
@@ -320,15 +343,18 @@ const { title = "Instalaciones García's" } = Astro.props;
           <ul class="flex gap-6 text-xs text-gray-600">
             <li>
               <a href="/privacidad" class="hover:text-white transition-colors"
-                >Política de Privacidad</a>
+                >Política de Privacidad</a
+              >
             </li>
             <li>
               <a href="/terminos" class="hover:text-white transition-colors"
-                >Términos y Condiciones</a>
+                >Términos y Condiciones</a
+              >
             </li>
             <li>
               <a href="/sitemap" class="hover:text-white transition-colors"
-                >Mapa del Sitio</a>
+                >Mapa del Sitio</a
+              >
             </li>
           </ul>
         </div>
