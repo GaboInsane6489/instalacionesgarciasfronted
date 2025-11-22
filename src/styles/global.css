@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-primary: #050505;
+  --color-secondary: #1a1a1a;
+  --color-accent: #ffffff;
+  --color-text-main: #ededed;
+  --color-text-muted: #a1a1a1;
+
+  /* Enterprise Typography Scale */
+  --text-xs: 12px;
+  --text-xs--line-height: 16px;
+  --text-sm: 13px;
+  --text-sm--line-height: 20px;
+  --text-base: 14px;
+  --text-base--line-height: 20px;
+  --text-lg: 16px;
+  --text-lg--line-height: 24px;
+  --text-xl: 18px;
+  --text-xl--line-height: 28px;
+  --text-2xl: 20px;
+  --text-2xl--line-height: 28px;
+  --text-3xl: 24px;
+  --text-3xl--line-height: 32px;
+  --text-4xl: 30px;
+  --text-4xl--line-height: 36px;
+}
+
+@layer base {
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-primary text-text-main;
+  }
+}
+
+/* Custom Scrollbar for Premium Feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Animations */
+@keyframes maskReveal {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-mask-reveal {
+  animation: maskReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-mask-reveal-delay {
+  animation: maskReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  transform: translateY(100%); /* Initial state */
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+/* Counter Animation Class */
+.counter-value {
+  font-variant-numeric: tabular-nums;
+}

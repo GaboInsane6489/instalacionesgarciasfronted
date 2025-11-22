@@ -1,0 +1,141 @@
+---
+/**
+ * VideoHero Component
+ * Full-screen video hero section with overlay text
+ *
+ * @param {Object} props
+ * @param {string} props.videoUrl - URL of the background video
+ * @param {string} props.title - Main hero title (Optional if using slots)
+ * @param {string} props.subtitle - Hero subtitle/description (Optional if using slots)
+ */
+const { videoUrl, title, subtitle } = Astro.props;
+---
+
+<section class="relative w-full h-screen overflow-hidden">
+  <!-- Background Video with optimized loading -->
+  <video
+    class="absolute top-0 left-0 w-full h-full object-cover"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+  >
+    <source src={videoUrl} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Enhanced gradient overlay for better text readability -->
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/70 z-10"
+  >
+  </div>
+
+  <!-- Content with staggered animations -->
+  <div
+    class="relative z-20 flex flex-col items-center justify-center h-full text-center px-6"
+  >
+    <!-- Render slots if available, otherwise fallback to props -->
+    <slot>
+      <h1
+        class="hero-title text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight drop-shadow-2xl"
+      >
+        {title}
+      </h1>
+      <p
+        class="hero-subtitle text-lg md:text-2xl text-gray-200 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-lg"
+      >
+        {subtitle}
+      </p>
+    </slot>
+  </div>
+
+  <!-- Premium Mouse Scroll Indicator -->
+  <div
+    class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity duration-300"
+  >
+    <div
+      class="w-[30px] h-[50px] rounded-full border-2 border-white flex justify-center p-2"
+    >
+      <div class="w-1 h-3 bg-white rounded-full animate-scroll-wheel"></div>
+    </div>
+    <span class="text-[10px] uppercase tracking-[0.2em] text-white font-medium"
+      >Scroll</span
+    >
+  </div>
+</section>
+
+<style>
+  @keyframes scrollWheel {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(15px);
+      opacity: 0;
+    }
+  }
+
+  .animate-scroll-wheel {
+    animation: scrollWheel 1.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+  }
+</style>
+
+<style>
+  /* Staggered entrance animations */
+  .hero-title {
+    animation: fadeInUp 1s ease-out 0.2s both;
+  }
+
+  .hero-subtitle {
+    animation: fadeInUp 1s ease-out 0.4s both;
+  }
+
+  .hero-cta {
+    animation: fadeInUp 1s ease-out 0.6s both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Smooth scroll indicator animation */
+  .scroll-indicator {
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translate(-50%, 0);
+    }
+    50% {
+      transform: translate(-50%, 10px);
+    }
+  }
+
+  /* Subtle pulse effect for scroll indicator */
+  .scroll-indicator:hover {
+    animation:
+      bounce 2s ease-in-out infinite,
+      pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+</style>

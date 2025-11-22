@@ -1,0 +1,688 @@
+---
+// ============================================
+// IMPORTS - Componentes y utilidades necesarias
+// ============================================
+import Layout from "../layouts/Layout.astro";
+import VideoHero from "../components/VideoHero.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import SolutionsGuide from "../components/SolutionsGuide.jsx";
+import {
+  Zap,
+  Wrench,
+  Building2,
+  Award,
+  Users,
+  Clock,
+  Shield,
+  CheckCircle2,
+  MessageSquare,
+  Star,
+} from "lucide-react";
+---
+
+<Layout title="Inicio - Instalaciones García c.a">
+  <!-- ============================================ -->
+  <!-- HERO SECTION - Video de fondo con CTA principal -->
+  <!-- ============================================ -->
+  <VideoHero
+    videoUrl="https://cdn.pixabay.com/video/2024/07/13/220941_large.mp4"
+  >
+    <div class="overflow-hidden mb-8">
+      <h1
+        class="text-5xl md:text-7xl font-bold text-white tracking-tight animate-mask-reveal"
+      >
+        Instalaciones García c.a
+      </h1>
+    </div>
+    <div class="overflow-hidden mb-10">
+      <p
+        class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto animate-mask-reveal-delay"
+      >
+        Soluciones eléctricas y proyectos institucionales con estándares de
+        excelencia.
+      </p>
+    </div>
+
+    <a
+      href="/servicios"
+      class="inline-block px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)] animate-fade-in-up"
+    >
+      Explorar Servicios
+    </a>
+  </VideoHero>
+
+  <!-- ============================================ -->
+  <!-- SERVICES SECTION - Grid de servicios principales -->
+  <!-- ============================================ -->
+  <section class="py-24 bg-primary relative overflow-hidden">
+    <!-- Decoración de fondo -->
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent pointer-events-none"
+    >
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+      <!-- Encabezado de sección -->
+      <div class="text-center mb-16 fade-in-section">
+        <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
+          Nuestros Servicios
+        </h2>
+        <p class="text-text-muted max-w-2xl mx-auto text-lg">
+          Ofrecemos un abanico de soluciones técnicas especializadas para
+          empresas e instituciones, con un enfoque en calidad, seguridad y
+          cumplimiento normativo.
+        </p>
+      </div>
+
+      <!-- Grid de tarjetas de servicios con Spotlight Container -->
+      <div
+        id="spotlight-container"
+        class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-in-section"
+        style="--mouse-x: 0px; --mouse-y: 0px;"
+      >
+        <ServiceCard
+          title="Instalaciones Eléctricas"
+          description="Diseño y ejecución de sistemas eléctricos de alta y baja tensión para complejos industriales. Incluye planificación detallada, selección de materiales certificados y documentación técnica completa."
+          Icon={Zap}
+        />
+        <ServiceCard
+          title="Mantenimiento Industrial"
+          description="Planes preventivos y correctivos para asegurar la continuidad operativa de su infraestructura. Incluye inspecciones periódicas, monitoreo de sistemas y reportes detallados."
+          Icon={Wrench}
+        />
+        <ServiceCard
+          title="Proyectos Institucionales"
+          description="Gestión integral de obras para el sector público y privado, cumpliendo normativas vigentes. Coordinación con proveedores y supervisión de equipos multidisciplinarios."
+          Icon={Building2}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SOLUTIONS GUIDE - Guía interactiva de soluciones -->
+  <!-- ============================================ -->
+  <SolutionsGuide client:load />
+
+  <!-- ============================================ -->
+  <!-- PROCESS SECTION - Nuestro proceso de trabajo -->
+  <!-- ============================================ -->
+  <section
+    class="py-24 bg-secondary border-t border-white/5 relative overflow-hidden"
+  >
+    <div
+      class="absolute top-0 right-0 w-[600px] h-[600px] bg-white/[0.02] rounded-full blur-3xl pointer-events-none"
+    >
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="text-center mb-16 fade-in-section">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+          Nuestro Proceso
+        </h2>
+        <p class="text-text-muted max-w-xl mx-auto">
+          Un enfoque sistemático que garantiza resultados excepcionales en cada
+          proyecto.
+        </p>
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 fade-in-section"
+      >
+        <!-- Step 1 -->
+        <div class="text-center group">
+          <div
+            class="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center border-2 border-white/10 group-hover:border-white/30 transition-all duration-300 group-hover:scale-110"
+          >
+            <span class="text-2xl font-bold text-white">1</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Consulta Inicial</h3>
+          <p class="text-text-muted text-sm">
+            Evaluamos sus necesidades y objetivos para diseñar la solución
+            perfecta.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="text-center group">
+          <div
+            class="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center border-2 border-white/10 group-hover:border-white/30 transition-all duration-300 group-hover:scale-110"
+          >
+            <span class="text-2xl font-bold text-white">2</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Planificación</h3>
+          <p class="text-text-muted text-sm">
+            Desarrollamos un plan detallado con cronogramas y presupuestos
+            claros.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="text-center group">
+          <div
+            class="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center border-2 border-white/10 group-hover:border-white/30 transition-all duration-300 group-hover:scale-110"
+          >
+            <span class="text-2xl font-bold text-white">3</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Ejecución</h3>
+          <p class="text-text-muted text-sm">
+            Implementamos el proyecto con precisión y cumplimiento de
+            estándares.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="text-center group">
+          <div
+            class="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center border-2 border-white/10 group-hover:border-white/30 transition-all duration-300 group-hover:scale-110"
+          >
+            <span class="text-2xl font-bold text-white">4</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Seguimiento</h3>
+          <p class="text-text-muted text-sm">
+            Brindamos soporte continuo y mantenimiento para asegurar el éxito a
+            largo plazo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- WHY US SECTION - Valores y diferenciadores -->
+  <!-- ============================================ -->
+  <section
+    class="py-24 bg-primary border-t border-white/5 relative overflow-hidden"
+  >
+    <div
+      class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-white/[0.02] rounded-full blur-3xl pointer-events-none"
+    >
+    </div>
+
+    <div class="container mx-auto px-6 text-center relative z-10">
+      <!-- Encabezado de sección -->
+      <div class="fade-in-section">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+          ¿Por qué elegirnos?
+        </h2>
+        <p class="text-text-muted max-w-xl mx-auto mb-16">
+          Nos diferenciamos por nuestro compromiso con la excelencia y la
+          satisfacción del cliente.
+        </p>
+      </div>
+
+      <!-- Grid de valores -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 fade-in-section"
+      >
+        <!-- Valor 1: Experiencia -->
+        <div
+          class="group p-6 rounded-xl bg-secondary/50 border border-white/5 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-105"
+        >
+          <div class="flex justify-center mb-4">
+            <Award
+              className="w-12 h-12 text-white group-hover:text-white transition-colors"
+            />
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Experiencia</h3>
+          <p class="text-text-muted text-sm">
+            Más de 15 años liderando proyectos de gran envergadura en el sector
+            industrial e institucional.
+          </p>
+        </div>
+
+        <!-- Valor 2: Calidad -->
+        <div
+          class="group p-6 rounded-xl bg-secondary/50 border border-white/5 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-105"
+        >
+          <div class="flex justify-center mb-4">
+            <Shield
+              className="w-12 h-12 text-white group-hover:text-white transition-colors"
+            />
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Calidad</h3>
+          <p class="text-text-muted text-sm">
+            Materiales de primera línea y mano de obra certificada con
+            estándares internacionales.
+          </p>
+        </div>
+
+        <!-- Valor 3: Compromiso -->
+        <div
+          class="group p-6 rounded-xl bg-secondary/50 border border-white/5 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-105"
+        >
+          <div class="flex justify-center mb-4">
+            <Clock
+              className="w-12 h-12 text-white group-hover:text-white transition-colors"
+            />
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Compromiso</h3>
+          <p class="text-text-muted text-sm">
+            Cumplimiento estricto de plazos y presupuestos, con transparencia en
+            cada etapa del proyecto.
+          </p>
+        </div>
+
+        <!-- Valor 4: Equipo -->
+        <div
+          class="group p-6 rounded-xl bg-secondary/50 border border-white/5 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-105"
+        >
+          <div class="flex justify-center mb-4">
+            <Users
+              className="w-12 h-12 text-white group-hover:text-white transition-colors"
+            />
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Equipo Experto</h3>
+          <p class="text-text-muted text-sm">
+            Profesionales altamente capacitados con certificaciones vigentes y
+            formación continua.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- TESTIMONIALS SECTION - Opiniones de clientes -->
+  <!-- ============================================ -->
+  <section
+    class="py-24 bg-secondary border-t border-white/5 relative overflow-hidden"
+  >
+    <div
+      class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-white/[0.02] rounded-full blur-3xl pointer-events-none"
+    >
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="text-center mb-16 fade-in-section">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+          Lo que dicen nuestros clientes
+        </h2>
+        <p class="text-text-muted max-w-xl mx-auto">
+          La satisfacción de nuestros clientes es nuestro mayor logro.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-in-section">
+        <!-- Testimonial 1 -->
+        <div
+          class="bg-primary/50 p-8 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
+        >
+          <div class="flex mb-4">
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+          </div>
+          <p class="text-text-muted mb-6 italic">
+            "Excelente trabajo en la instalación eléctrica de nuestra planta.
+            Cumplieron con todos los plazos y el resultado superó nuestras
+            expectativas."
+          </p>
+          <div class="flex items-center">
+            <div
+              class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4"
+            >
+              <MessageSquare className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <p class="text-white font-semibold">Carlos Méndez</p>
+              <p class="text-text-muted text-sm">
+                Director de Operaciones, Industrias XYZ
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div
+          class="bg-primary/50 p-8 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
+        >
+          <div class="flex mb-4">
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+          </div>
+          <p class="text-text-muted mb-6 italic">
+            "Profesionalismo de primer nivel. Su equipo demostró gran
+            conocimiento técnico y atención al detalle en cada fase del
+            proyecto."
+          </p>
+          <div class="flex items-center">
+            <div
+              class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4"
+            >
+              <MessageSquare className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <p class="text-white font-semibold">Ana Rodríguez</p>
+              <p class="text-text-muted text-sm">
+                Gerente de Proyectos, Construcciones ABC
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div
+          class="bg-primary/50 p-8 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
+        >
+          <div class="flex mb-4">
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+          </div>
+          <p class="text-text-muted mb-6 italic">
+            "Confiables y eficientes. Han sido nuestro socio estratégico en
+            mantenimiento durante años. Altamente recomendados."
+          </p>
+          <div class="flex items-center">
+            <div
+              class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4"
+            >
+              <MessageSquare className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <p class="text-white font-semibold">Roberto Silva</p>
+              <p class="text-text-muted text-sm">
+                Jefe de Mantenimiento, Hospital Central
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- STATS SECTION - Números que respaldan nuestra trayectoria -->
+  <!-- ============================================ -->
+  <section class="py-20 bg-primary border-t border-white/5">
+    <div class="container mx-auto px-6">
+      <div
+        class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center fade-in-section"
+      >
+        <!-- Stat 1 -->
+        <div class="group">
+          <div
+            class="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300"
+          >
+            500+
+          </div>
+          <div class="text-text-muted text-sm uppercase tracking-wider">
+            Proyectos Completados
+          </div>
+        </div>
+
+        <!-- Stat 2 -->
+        <div class="group">
+          <div
+            class="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300"
+          >
+            15+
+          </div>
+          <div class="text-text-muted text-sm uppercase tracking-wider">
+            Años de Experiencia
+          </div>
+        </div>
+
+        <!-- Stat 3 -->
+        <div class="group">
+          <div
+            class="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300"
+          >
+            98%
+          </div>
+          <div class="text-text-muted text-sm uppercase tracking-wider">
+            Satisfacción del Cliente
+          </div>
+        </div>
+
+        <!-- Stat 4 -->
+        <div class="group">
+          <div
+            class="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300"
+          >
+            24/7
+          </div>
+          <div class="text-text-muted text-sm uppercase tracking-wider">
+            Soporte Técnico
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- FAQ SECTION - Preguntas frecuentes -->
+  <!-- ============================================ -->
+  <section
+    class="py-24 bg-secondary border-t border-white/5 relative overflow-hidden"
+  >
+    <div class="container mx-auto px-6 max-w-4xl">
+      <div class="text-center mb-16 fade-in-section">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+          Preguntas Frecuentes
+        </h2>
+        <p class="text-text-muted max-w-xl mx-auto">
+          Respuestas a las consultas más comunes sobre nuestros servicios.
+        </p>
+      </div>
+
+      <div class="space-y-6 fade-in-section">
+        <!-- FAQ 1 -->
+        <div
+          class="bg-primary/50 p-6 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
+        >
+          <div class="flex items-start">
+            <CheckCircle2
+              className="w-6 h-6 text-white mr-4 flex-shrink-0 mt-1"
+            />
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">
+                ¿Qué tipo de proyectos realizan?
+              </h3>
+              <p class="text-text-muted text-sm">
+                Realizamos instalaciones eléctricas industriales y comerciales,
+                mantenimiento preventivo y correctivo, proyectos institucionales
+                para el sector público y privado, y consultoría técnica
+                especializada.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div
+          class="bg-primary/50 p-6 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
+        >
+          <div class="flex items-start">
+            <CheckCircle2
+              className="w-6 h-6 text-white mr-4 flex-shrink-0 mt-1"
+            />
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">
+                ¿Cuentan con certificaciones?
+              </h3>
+              <p class="text-text-muted text-sm">
+                Sí, nuestro equipo cuenta con certificaciones vigentes en
+                instalaciones eléctricas, seguridad industrial y normativas
+                nacionales e internacionales. Todos nuestros proyectos cumplen
+                con los estándares de calidad más exigentes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div
+          class="bg-primary/50 p-6 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
+        >
+          <div class="flex items-start">
+            <CheckCircle2
+              className="w-6 h-6 text-white mr-4 flex-shrink-0 mt-1"
+            />
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">
+                ¿Ofrecen garantía en sus trabajos?
+              </h3>
+              <p class="text-text-muted text-sm">
+                Absolutamente. Todos nuestros proyectos incluyen garantía de
+                mano de obra y materiales. El período de garantía varía según el
+                tipo de proyecto, pero siempre aseguramos la calidad y
+                durabilidad de nuestro trabajo.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div
+          class="bg-primary/50 p-6 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
+        >
+          <div class="flex items-start">
+            <CheckCircle2
+              className="w-6 h-6 text-white mr-4 flex-shrink-0 mt-1"
+            />
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">
+                ¿Cómo puedo solicitar una cotización?
+              </h3>
+              <p class="text-text-muted text-sm">
+                Puede contactarnos a través de nuestro formulario de contacto,
+                por teléfono o correo electrónico. Evaluaremos sus necesidades y
+                le proporcionaremos una cotización detallada sin compromiso en
+                un plazo de 24-48 horas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- CTA SECTION - Llamada a la acción final -->
+  <!-- ============================================ -->
+  <section
+    class="py-24 bg-primary border-t border-white/5 relative overflow-hidden"
+  >
+    <!-- Decoración de fondo -->
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-white/[0.03] via-transparent to-white/[0.03] pointer-events-none"
+    >
+    </div>
+
+    <div
+      class="container mx-auto px-6 text-center relative z-10 fade-in-section"
+    >
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+        ¿Listo para iniciar tu proyecto?
+      </h2>
+      <p class="text-text-muted text-lg max-w-2xl mx-auto mb-10">
+        Contáctanos hoy mismo y descubre cómo podemos transformar tus ideas en
+        realidad con soluciones técnicas de vanguardia.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/contacto"
+          class="inline-block px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-lg"
+        >
+          Solicitar Cotización
+        </a>
+        <a
+          href="/servicios"
+          class="inline-block px-8 py-4 bg-transparent text-white font-bold rounded-full border-2 border-white/20 hover:border-white hover:bg-white/10 transition-all duration-300"
+        >
+          Ver Todos los Servicios
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<!-- ============================================ -->
+<!-- CUSTOM ANIMATIONS - Animaciones CSS y JavaScript -->
+<!-- ============================================ -->
+<style>
+  /* Fade-in animation for sections */
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
+  }
+
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Smooth transitions */
+  * {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -100px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+
+        // Trigger counter animation if element has counters
+        if (entry.target.querySelector(".counter-value")) {
+          animateCounters(entry.target);
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all fade-in sections
+  document.querySelectorAll(".fade-in-section").forEach((section) => {
+    observer.observe(section);
+  });
+
+  // Counter Animation Logic
+  function animateCounters(section) {
+    const counters = section.querySelectorAll(".counter-value");
+
+    counters.forEach((counter) => {
+      const target = parseInt(counter.getAttribute("data-target"));
+      const duration = 2000; // 2 seconds
+      const start = 0;
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Easing function for smooth deceleration
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+
+        const current = Math.floor(start + (target - start) * easeOutQuart);
+        counter.textContent = current;
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          counter.textContent = target; // Ensure final value is exact
+        }
+      }
+
+      requestAnimationFrame(update);
+    });
+  }
+</script>
