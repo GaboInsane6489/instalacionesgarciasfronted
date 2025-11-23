@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import apiClient from "../lib/apiClient";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Calculator,
@@ -28,59 +29,40 @@ const ProjectCalculator = () => {
     { id: "construccion", name: "Construcción Obra Civil", rate: 0.25 },
   ];
 
-  const handleCalculate = () => {
+  const handleCalculate = async () => {
     if (!formData.area || formData.area <= 0) return;
 
     setLoading(true);
 
-    // Simulate calculation delay for UX
-    setTimeout(() => {
-      const service = services.find((s) => s.id === formData.serviceType);
-      let days = parseFloat(formData.area) * service.rate;
-
-      // Apply modifiers
-      if (formData.finish === "premium") days *= 1.3;
-      if (formData.painting) days += 1;
-
-      // Round up to nearest 0.5
-      days = Math.ceil(days * 2) / 2;
-      if (days < 1) days = 1;
-
-      // Material estimation (Simplified logic)
-      const materials = calculateMaterials(formData.area, formData.serviceType);
-
-      setResult({
-        days,
-        materials,
-        serviceName: service.name,
+    try {
+      // Calculate Time
+      const timeResponse = await apiClient.post("/simulador/tiempo", {
+        area: formData.area,
+        serviceType: formData.serviceType,
+        finish: formData.finish,
+        painting: formData.painting,
       });
 
-      setLoading(false);
-      setStep(2);
-    }, 1500);
-  };
+      // Calculate Materials
+      const materialsResponse = await apiClient.post("/simulador/materiales", {
+        area: formData.area,
+        serviceType: formData.serviceType,
+      });
 
-  const calculateMaterials = (area, type) => {
-    const m2 = parseFloat(area);
-    if (type === "drywall") {
-      return [
-        { name: "Placas de Yeso", qty: Math.ceil(m2 / 2.88), unit: "pzas" },
-        { name: "Postes Metálicos", qty: Math.ceil(m2 * 1.5), unit: "pzas" },
-        { name: "Tornillería", qty: Math.ceil(m2 * 30), unit: "pzas" },
-        { name: "Compuesto (Masilla)", qty: Math.ceil(m2 * 0.8), unit: "kg" },
-      ];
-    } else if (type === "remodelacion") {
-      return [
-        { name: "Recubrimiento", qty: Math.ceil(m2 * 1.1), unit: "m²" },
-        { name: "Adhesivo", qty: Math.ceil(m2 * 0.25), unit: "bultos" },
-        { name: "Boquilla", qty: Math.ceil(m2 * 0.1), unit: "kg" },
-      ];
-    } else {
-      return [
-        { name: "Cemento", qty: Math.ceil(m2 * 0.5), unit: "bultos" },
-        { name: "Arena", qty: (m2 * 0.08).toFixed(1), unit: "m³" },
-        { name: "Grava", qty: (m2 * 0.09).toFixed(1), unit: "m³" },
-      ];
+      setResult({
+        days: timeResponse.data.days,
+        materials: materialsResponse.data.materials,
+        serviceName: timeResponse.data.serviceName,
+      });
+
+      setStep(2);
+    } catch (error) {
+      console.error("Error calculating:", error);
+      alert(
+        "Hubo un error al realizar el cálculo. Por favor intente nuevamente.",
+      );
+    } finally {
+      setLoading(false);
     }
   };
 

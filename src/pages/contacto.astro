@@ -139,23 +139,23 @@ import formBg from "../assets/images/Plannig.webp";
             <h3 class="text-2xl font-bold text-white mb-8">
               Envíenos un Mensaje
             </h3>
-            <form class="space-y-6">
+            <form id="contactForm" class="space-y-6">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-2">
-                  <label class="text-sm font-medium text-gray-300">Nombre</label
-                  >
+                  <label class="text-sm font-medium text-gray-300">Nombre</label>
                   <input
                     type="text"
+                    name="nombre"
+                    required
                     class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"
                     placeholder="Juan Pérez"
                   />
                 </div>
                 <div class="space-y-2">
-                  <label class="text-sm font-medium text-gray-300"
-                    >Empresa</label
-                  >
+                  <label class="text-sm font-medium text-gray-300">Empresa</label>
                   <input
                     type="text"
+                    name="empresa"
                     class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"
                     placeholder="Empresa S.A."
                   />
@@ -166,24 +166,39 @@ import formBg from "../assets/images/Plannig.webp";
                 <label class="text-sm font-medium text-gray-300">Email</label>
                 <input
                   type="email"
+                  name="email"
+                  required
                   class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"
                   placeholder="juan@empresa.com"
+                />
+              </div>
+
+               <div class="space-y-2">
+                <label class="text-sm font-medium text-gray-300">Teléfono</label>
+                <input
+                  type="tel"
+                  name="telefono"
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"
+                  placeholder="+52 55 1234 5678"
                 />
               </div>
 
               <div class="space-y-2">
                 <label class="text-sm font-medium text-gray-300">Mensaje</label>
                 <textarea
+                  name="mensaje"
                   rows="4"
+                  required
                   class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"
                   placeholder="Describa su proyecto..."></textarea>
               </div>
 
               <button
                 type="submit"
-                class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2"
+                id="submitBtn"
+                class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Enviar Mensaje <Send size={18} />
+                <span>Enviar Mensaje</span> <Send size={18} />
               </button>
             </form>
           </div>
@@ -199,3 +214,57 @@ import formBg from "../assets/images/Plannig.webp";
     </div>
   </section>
 </Layout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn?.querySelector('span');
+
+    if (form && submitBtn && btnText) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Disable button
+        submitBtn.disabled = true;
+        const originalText = btnText.innerText;
+        btnText.innerText = 'Enviando...';
+
+        const formData = new FormData(form);
+        const data = {
+          nombre: formData.get('nombre'),
+          email: formData.get('email'),
+          telefono: formData.get('telefono'),
+          mensaje: `Empresa: ${formData.get('empresa')}\n\n${formData.get('mensaje')}`,
+          tipo_servicio: 'Contacto General',
+          urgencia: 'Normal',
+          m2: 0
+        };
+
+        try {
+          const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:3000';
+          const response = await fetch(`${apiUrl}/api/leads`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+          });
+
+          if (!response.ok) {
+            throw new Error('Error en la respuesta del servidor');
+          }
+
+          alert('✅ Mensaje enviado correctamente. Nos pondremos en contacto pronto.');
+          form.reset();
+        } catch (error) {
+          console.error('Error sending lead:', error);
+          alert('❌ Error al enviar el mensaje. Por favor intente nuevamente.');
+        } finally {
+          submitBtn.disabled = false;
+          btnText.innerText = originalText;
+        }
+      });
+    }
+  });
+</script>
