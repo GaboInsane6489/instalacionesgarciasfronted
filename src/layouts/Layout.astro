@@ -12,6 +12,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import SpeedInsights from "@vercel/speed-insights/astro";
+import Analytics from "@vercel/analytics/astro";
 
 /**
  * Layout Component
@@ -75,6 +76,7 @@ const { title = "Instalaciones García's" } = Astro.props;
     class="flex flex-col min-h-screen font-sans bg-primary text-text-main antialiased selection:bg-white selection:text-black"
   >
     <SpeedInsights />
+    <Analytics />
     <!-- Navbar with Glassmorphism -->
     <header
       id="navbar"
@@ -167,21 +169,122 @@ const { title = "Instalaciones García's" } = Astro.props;
       <!-- Mobile Menu -->
       <div
         id="mobile-menu"
-        class="md:hidden hidden bg-black/95 backdrop-blur-xl border-t border-white/10 absolute w-full"
+        class="md:hidden hidden bg-black/95 backdrop-blur-xl border-t border-white/10 absolute w-full h-screen"
       >
-        <ul class="flex flex-col py-6 px-6 space-y-4">
-          {
-            ["Inicio", "Servicios", "Proyectos", "Contacto"].map((item) => (
-              <li>
-                <a
-                  href={item === "Inicio" ? "/" : `/${item.toLowerCase()}`}
-                  class="block text-lg text-gray-300 hover:text-white transition-colors duration-300 py-2 border-b border-white/5"
+        <ul
+          class="flex flex-col items-center justify-center h-[80vh] space-y-8"
+        >
+          <li>
+            <a
+              href="/"
+              class="flex flex-col items-center gap-2 text-2xl text-gray-300 hover:text-white transition-colors duration-300 group"
+            >
+              <div
+                class="p-3 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-home w-6 h-6 group-hover:scale-110 transition-transform"
+                  ><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                  ></path><polyline points="9 22 9 12 15 12 15 22"
+                  ></polyline></svg
                 >
-                  {item}
-                </a>
-              </li>
-            ))
-          }
+              </div>
+              <span>Inicio</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/servicios"
+              class="flex flex-col items-center gap-2 text-2xl text-gray-300 hover:text-white transition-colors duration-300 group"
+            >
+              <div
+                class="p-3 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-briefcase w-6 h-6 group-hover:scale-110 transition-transform"
+                  ><rect width="20" height="14" x="2" y="7" rx="2" ry="2"
+                  ></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"
+                  ></path></svg
+                >
+              </div>
+              <span>Servicios</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/proyectos"
+              class="flex flex-col items-center gap-2 text-2xl text-gray-300 hover:text-white transition-colors duration-300 group"
+            >
+              <div
+                class="p-3 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-folder-git-2 w-6 h-6 group-hover:scale-110 transition-transform"
+                  ><path
+                    d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5"
+                  ></path><circle cx="13" cy="12" r="2"></circle><path
+                    d="M18 19c-2.8 0-5-2.2-5-5v8"></path><circle
+                    cx="20"
+                    cy="19"
+                    r="2"></circle></svg
+                >
+              </div>
+              <span>Proyectos</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/contacto"
+              class="flex flex-col items-center gap-2 text-2xl text-gray-300 hover:text-white transition-colors duration-300 group"
+            >
+              <div
+                class="p-3 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-mail w-6 h-6 group-hover:scale-110 transition-transform"
+                  ><rect width="20" height="16" x="2" y="4" rx="2"></rect><path
+                    d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
+                >
+              </div>
+              <span>Contacto</span>
+            </a>
+          </li>
         </ul>
       </div>
     </header>
@@ -193,8 +296,16 @@ const { title = "Instalaciones García's" } = Astro.props;
 
     <!-- Mega Footer with Brutalist Design & Phosphorescent Icons -->
     <footer
-      class="bg-[#050505] border-t border-white/5 pt-24 pb-12 relative overflow-hidden"
+      class="bg-[#050505] border-t border-white/5 pt-24 pb-12 relative overflow-hidden spotlight-group"
+      style="--mouse-x: 0px; --mouse-y: 0px;"
     >
+      <!-- Spotlight Overlay -->
+      <div
+        class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);"
+      >
+      </div>
+
       <!-- Massive Typography Background -->
       <div
         class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-[0.03] select-none"
@@ -209,15 +320,17 @@ const { title = "Instalaciones García's" } = Astro.props;
       <div class="container mx-auto px-6 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
           <!-- Brand Column (Span 4) -->
-          <div class="md:col-span-4 space-y-8">
+          <div class="md:col-span-4 space-y-8 text-center md:text-left">
             <a href="/" class="inline-block">
-              <div class="flex items-center gap-3 group">
+              <div
+                class="flex items-center gap-3 group justify-center md:justify-start"
+              >
                 <div
                   class="w-12 h-12 bg-white text-black flex items-center justify-center rounded-xl font-black text-xl group-hover:scale-110 transition-transform duration-300"
                 >
                   IG
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col text-left">
                   <span
                     class="text-2xl font-bold text-white tracking-tight leading-none"
                     >Instalaciones</span
@@ -229,14 +342,16 @@ const { title = "Instalaciones García's" } = Astro.props;
                 </div>
               </div>
             </a>
-            <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
+            <p
+              class="text-gray-400 text-sm leading-relaxed max-w-sm mx-auto md:mx-0"
+            >
               Transformamos la industria con soluciones de ingeniería de
               vanguardia. Calidad inquebrantable, seguridad absoluta y diseño
               funcional.
             </p>
 
             <!-- Social Links with Phosphorescent Hovers -->
-            <div class="flex gap-4">
+            <div class="flex gap-4 justify-center md:justify-start">
               <a
                 href="#"
                 class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 transition-all duration-300 group hover:bg-white/10 hover:-translate-y-1"
@@ -281,65 +396,105 @@ const { title = "Instalaciones García's" } = Astro.props;
           </div>
 
           <!-- Navigation Links (Span 2) -->
-          <div class="md:col-span-2">
+          <div class="md:col-span-2 text-center md:text-left">
             <h3
               class="text-white font-bold mb-8 text-sm tracking-widest uppercase border-b border-white/10 pb-2 inline-block"
             >
               Explorar
             </h3>
             <ul class="space-y-4">
-              {
-                [
-                  "Inicio",
-                  "Servicios",
-                  "Proyectos",
-                  "Nosotros",
-                  "Contacto",
-                ].map((item) => (
-                  <li>
-                    <a
-                      href="#"
-                      class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block flex items-center gap-2 group"
-                    >
-                      <span class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-white group-hover:shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all" />
-                      {item}
-                    </a>
-                  </li>
-                ))
-              }
+              <li>
+                <a
+                  href="/"
+                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block flex items-center gap-2 group justify-center md:justify-start"
+                >
+                  <span
+                    class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-white group-hover:shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all"
+                  ></span>
+                  Inicio
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/servicios"
+                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block flex items-center gap-2 group justify-center md:justify-start"
+                >
+                  <span
+                    class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-white group-hover:shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all"
+                  ></span>
+                  Servicios
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/proyectos"
+                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block flex items-center gap-2 group justify-center md:justify-start"
+                >
+                  <span
+                    class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-white group-hover:shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all"
+                  ></span>
+                  Proyectos
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contacto"
+                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block flex items-center gap-2 group justify-center md:justify-start"
+                >
+                  <span
+                    class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-white group-hover:shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all"
+                  ></span>
+                  Contacto
+                </a>
+              </li>
             </ul>
           </div>
 
           <!-- Services Links (Span 3) -->
-          <div class="md:col-span-3">
+          <div class="md:col-span-3 text-center md:text-left">
             <h3
               class="text-white font-bold mb-8 text-sm tracking-widest uppercase border-b border-white/10 pb-2 inline-block"
             >
               Servicios
             </h3>
             <ul class="space-y-4">
-              {
-                [
-                  "Instalaciones Eléctricas",
-                  "Mantenimiento Industrial",
-                  "Proyectos Institucionales",
-                  "Consultoría Técnica",
-                ].map((item) => (
-                  <li>
-                    <a
-                      href="#"
-                      class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block group"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ))
-              }
+              <li>
+                <a
+                  href="/servicios"
+                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block group"
+                >
+                  Instalaciones Eléctricas
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/servicios"
+                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block group"
+                >
+                  Mantenimiento Industrial
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/servicios"
+                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block group"
+                >
+                  Proyectos Institucionales
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/servicios"
+                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block group"
+                >
+                  Consultoría Técnica
+                </a>
+              </li>
             </ul>
           </div>
 
           <!-- Contact Info (Span 3) -->
-          <div class="md:col-span-3">
+          <div class="md:col-span-3 text-center md:text-left">
             <h3
               class="text-white font-bold mb-8 text-sm tracking-widest uppercase border-b border-white/10 pb-2 inline-block"
             >
@@ -347,7 +502,9 @@ const { title = "Instalaciones García's" } = Astro.props;
             </h3>
             <ul class="space-y-6">
               <li class="group">
-                <div class="flex items-start gap-4">
+                <div
+                  class="flex items-start gap-4 justify-center md:justify-start"
+                >
                   <div
                     class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors"
                   >
@@ -355,7 +512,7 @@ const { title = "Instalaciones García's" } = Astro.props;
                       className="w-5 h-5 text-gray-400 group-hover:text-[#F59E0B] group-hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.8)] transition-all duration-300"
                     />
                   </div>
-                  <div>
+                  <div class="text-left">
                     <span
                       class="block text-xs text-gray-500 mb-1 uppercase tracking-wider"
                       >Dirección</span
@@ -369,7 +526,9 @@ const { title = "Instalaciones García's" } = Astro.props;
                 </div>
               </li>
               <li class="group">
-                <div class="flex items-start gap-4">
+                <div
+                  class="flex items-start gap-4 justify-center md:justify-start"
+                >
                   <div
                     class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors"
                   >
@@ -377,7 +536,7 @@ const { title = "Instalaciones García's" } = Astro.props;
                       className="w-5 h-5 text-gray-400 group-hover:text-[#10B981] group-hover:drop-shadow-[0_0_8px_rgba(16,185,129,0.8)] transition-all duration-300"
                     />
                   </div>
-                  <div>
+                  <div class="text-left">
                     <span
                       class="block text-xs text-gray-500 mb-1 uppercase tracking-wider"
                       >Teléfono</span
@@ -390,7 +549,9 @@ const { title = "Instalaciones García's" } = Astro.props;
                 </div>
               </li>
               <li class="group">
-                <div class="flex items-start gap-4">
+                <div
+                  class="flex items-start gap-4 justify-center md:justify-start"
+                >
                   <div
                     class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors"
                   >
@@ -398,7 +559,7 @@ const { title = "Instalaciones García's" } = Astro.props;
                       className="w-5 h-5 text-gray-400 group-hover:text-[#8B5CF6] group-hover:drop-shadow-[0_0_8px_rgba(139,92,246,0.8)] transition-all duration-300"
                     />
                   </div>
-                  <div>
+                  <div class="text-left">
                     <span
                       class="block text-xs text-gray-500 mb-1 uppercase tracking-wider"
                       >Email</span
@@ -418,7 +579,7 @@ const { title = "Instalaciones García's" } = Astro.props;
         <div
           class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6"
         >
-          <p class="text-xs text-gray-600 font-medium">
+          <p class="text-xs text-gray-600 font-medium text-center md:text-left">
             © 2025 Instalaciones García's S.A. de C.V. <span
               class="hidden md:inline mx-2">|</span
             > Todos los derechos reservados.
@@ -510,5 +671,19 @@ const { title = "Instalaciones García's" } = Astro.props;
         spans[2].classList.remove("-rotate-45", "translate-x-px");
       }
     }
+  });
+
+  // Spotlight Effect Logic
+  const spotlightGroups = document.querySelectorAll(".spotlight-group");
+
+  spotlightGroups.forEach((group) => {
+    group.addEventListener("mousemove", (e) => {
+      const rect = group.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      group.style.setProperty("--mouse-x", `${x}px`);
+      group.style.setProperty("--mouse-y", `${y}px`);
+    });
   });
 </script>

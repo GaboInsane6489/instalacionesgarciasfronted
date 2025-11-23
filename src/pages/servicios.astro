@@ -150,7 +150,7 @@ const services = [
     <div class="container mx-auto px-6">
       <div
         id="spotlight-container"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 spotlight-group"
         style="--mouse-x: 0px; --mouse-y: 0px;"
       >
         {
@@ -176,7 +176,7 @@ const services = [
   <section class="py-20 bg-secondary border-y border-white/5">
     <div class="container mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div>
+        <div class="text-center md:text-left">
           <h2 class="text-3xl font-bold text-white mb-6">
             Garantía de Excelencia
           </h2>
@@ -186,15 +186,21 @@ const services = [
             tiempos de entrega y la transparencia presupuestal.
           </p>
           <ul class="space-y-4">
-            <li class="flex items-center gap-3 text-gray-300">
+            <li
+              class="flex items-center gap-3 text-gray-300 justify-center md:justify-start"
+            >
               <CheckCircle2 className="w-5 h-5 text-white" />
               <span>Certificación NOM-001-SEDE</span>
             </li>
-            <li class="flex items-center gap-3 text-gray-300">
+            <li
+              class="flex items-center gap-3 text-gray-300 justify-center md:justify-start"
+            >
               <CheckCircle2 className="w-5 h-5 text-white" />
               <span>Personal asegurado (IMSS/REPSE)</span>
             </li>
-            <li class="flex items-center gap-3 text-gray-300">
+            <li
+              class="flex items-center gap-3 text-gray-300 justify-center md:justify-start"
+            >
               <CheckCircle2 className="w-5 h-5 text-white" />
               <span>Garantía por escrito en cada obra</span>
             </li>

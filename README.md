@@ -245,5 +245,17 @@ Asegúrate de que tu servidor sirva los archivos con los headers de caché corre
 
 ---
 
+## 11. 💡 Ideas Futuras (Roadmap)
+
+Lista de mejoras planificadas para llevar el proyecto al siguiente nivel:
+
+- [ ] **Blueprint Mode (Modo Plano):** Un tema alternativo que simula un plano arquitectónico (fondo azul, líneas finas).
+- [ ] **Transiciones de Vista "Mágicas":** Animaciones fluidas donde los elementos persisten y se transforman al navegar entre páginas.
+- [ ] **Elementos 3D Interactivos:** Modelos 3D ligeros (cascos, estructuras) que reaccionan al mouse.
+- [x] **Efecto Spotlight:** Cursor tipo "linterna" que revela texturas en secciones oscuras.
+- [ ] **PWA (Progressive Web App):** Hacer el sitio instalable y funcional offline.
+
+---
+
 > **Instalaciones García's** - Ingeniería y Excelencia.
 > Documentación generada por el equipo de desarrollo.
