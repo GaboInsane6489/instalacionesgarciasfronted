@@ -1,204 +1,197 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, MessageSquare } from "lucide-react";
 
 // Assets
 import heroBg from "../assets/images/ConstructionManager.webp";
-import formBg from "../assets/images/Plannig.webp";
 ---
 
 <Layout title="Contacto - Instalaciones García's">
-  <!-- Hero Section -->
-  <section class="relative py-32 bg-primary overflow-hidden">
-    <div
-      class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-primary z-10"
-    >
-    </div>
-    <div
-      class="absolute inset-0 bg-cover bg-center opacity-40"
-      style={`background-image: url('${heroBg.src}');`}
-    >
+  <!-- Hero Section with Parallax -->
+  <section class="relative h-[50vh] min-h-[400px] overflow-hidden flex items-center justify-center">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-black/70 z-10"></div>
+      <img
+        src={heroBg.src}
+        alt="Contacto"
+        class="w-full h-full object-cover"
+      />
     </div>
 
     <div class="container mx-auto px-6 relative z-20 text-center">
-      <h1
-        class="text-4xl md:text-6xl font-bold text-white mb-6 animate-mask-reveal"
-      >
+      <span class="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 text-xs font-bold tracking-wider text-white mb-4 backdrop-blur-md">
+        ESTAMOS PARA SERVIRLE
+      </span>
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
         Hablemos de su Proyecto
       </h1>
-      <p
-        class="text-xl text-text-muted max-w-2xl mx-auto animate-mask-reveal-delay"
-      >
-        Estamos listos para brindar la solución técnica que su empresa necesita.
+      <p class="text-lg text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+        Nuestro equipo de ingenieros está listo para brindarle la asesoría técnica especializada que su empresa necesita.
       </p>
     </div>
   </section>
 
-  <!-- Contact Content -->
-  <section class="py-24 bg-primary relative">
+  <!-- Main Content Grid -->
+  <section class="py-20 bg-primary relative">
     <div class="container mx-auto px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-        <!-- Contact Info -->
-        <div class="space-y-12 text-center md:text-left">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+        
+        <!-- Left Column: Contact Info & Map -->
+        <div class="lg:col-span-5 space-y-12">
           <div>
-            <h2 class="text-3xl font-bold text-white mb-6">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <MessageSquare className="w-6 h-6 text-white" />
               Información de Contacto
             </h2>
-            <p class="text-gray-400 leading-relaxed mb-8">
-              Visítenos en nuestras oficinas corporativas o contáctenos por los
-              medios digitales. Nuestro equipo de ingeniería está disponible
-              para asesorarle.
+            <p class="text-gray-400 text-sm leading-relaxed mb-8">
+              Visítenos en nuestras oficinas corporativas o contáctenos a través de nuestros canales digitales. Garantizamos una respuesta en menos de 24 horas.
             </p>
+
+            <div class="space-y-6">
+              <!-- Location -->
+              <div class="flex items-start gap-4 group">
+                <div class="w-10 h-10 rounded-lg bg-secondary border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:border-white/30 transition-colors">
+                  <MapPin className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-white mb-1">Oficinas Corporativas</h3>
+                  <p class="text-gray-400 text-xs leading-relaxed">
+                    Av. Tecnológico 2405, Piso 8<br />
+                    Torre Empresarial, CDMX<br />
+                    CP 11560
+                  </p>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="flex items-start gap-4 group">
+                <div class="w-10 h-10 rounded-lg bg-secondary border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:border-white/30 transition-colors">
+                  <Phone className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-white mb-1">Teléfonos</h3>
+                  <p class="text-gray-400 text-xs leading-relaxed">
+                    +52 (55) 8900-1234<br />
+                    +52 (55) 8900-5678
+                  </p>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="flex items-start gap-4 group">
+                <div class="w-10 h-10 rounded-lg bg-secondary border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:border-white/30 transition-colors">
+                  <Mail className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-white mb-1">Correo Electrónico</h3>
+                  <p class="text-gray-400 text-xs leading-relaxed">
+                    proyectos@instalacionesgarcias.com<br />
+                    ventas@instalacionesgarcias.com
+                  </p>
+                </div>
+              </div>
+
+              <!-- Hours -->
+              <div class="flex items-start gap-4 group">
+                <div class="w-10 h-10 rounded-lg bg-secondary border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:border-white/30 transition-colors">
+                  <Clock className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-white mb-1">Horario de Atención</h3>
+                  <p class="text-gray-400 text-xs leading-relaxed">
+                    Lunes - Viernes: 8:00 AM - 6:00 PM<br />
+                    Sábado: 9:00 AM - 1:00 PM
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="space-y-8">
-            <div
-              class="flex items-start gap-6 group justify-center md:justify-start"
-            >
-              <div
-                class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors border border-white/10"
-              >
-                <MapPin className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-white mb-2">Ubicación</h3>
-                <p class="text-gray-400">
-                  Av. Tecnológico 2405, Piso 8<br />
-                  Torre Empresarial, CDMX<br />
-                  CP 11560
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="flex items-start gap-6 group justify-center md:justify-start"
-            >
-              <div
-                class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors border border-white/10"
-              >
-                <Phone className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-white mb-2">Teléfono</h3>
-                <p class="text-gray-400">
-                  +52 (55) 8900-1234<br />
-                  +52 (55) 8900-5678
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="flex items-start gap-6 group justify-center md:justify-start"
-            >
-              <div
-                class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors border border-white/10"
-              >
-                <Mail className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-white mb-2">Email</h3>
-                <p class="text-gray-400">
-                  proyectos@instalacionesgarcias.com<br />
-                  ventas@instalacionesgarcias.com
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="flex items-start gap-6 group justify-center md:justify-start"
-            >
-              <div
-                class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors border border-white/10"
-              >
-                <Clock className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-white mb-2">Horario</h3>
-                <p class="text-gray-400">
-                  Lunes - Viernes: 8:00 AM - 6:00 PM<br />
-                  Sábado: 9:00 AM - 1:00 PM
-                </p>
-              </div>
-            </div>
+          <!-- Google Maps Embed -->
+          <div class="rounded-2xl overflow-hidden border border-white/10 h-[300px] w-full relative group">
+            <div class="absolute inset-0 bg-secondary animate-pulse z-0"></div>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.5395970522604!2d-99.17387868509334!3d19.43260768688426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f8cb1d7c4c33%3A0x6e2c3b8a8b8b8b8b!2sAv.%20Paseo%20de%20la%20Reforma%2C%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1625680000000!5m2!1ses-419!2smx" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              class="relative z-10 grayscale hover:grayscale-0 transition-all duration-500 opacity-80 hover:opacity-100"
+            ></iframe>
           </div>
         </div>
 
-        <!-- Contact Form -->
-        <div class="relative rounded-3xl overflow-hidden p-8 md:p-12">
-          <!-- Background Image with Blur -->
-          <div class="absolute inset-0 z-0">
-            <img
-              src={formBg.src}
-              alt="Background"
-              class="w-full h-full object-cover"
-            />
-            <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
-          </div>
+        <!-- Right Column: Contact Form -->
+        <div class="lg:col-span-7">
+          <div class="bg-secondary/50 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-10 shadow-2xl relative overflow-hidden">
+            <!-- Decorative gradient -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+            
+            <h3 class="text-2xl font-bold text-white mb-2 relative z-10">Envíenos un Mensaje</h3>
+            <p class="text-gray-400 text-sm mb-8 relative z-10">Complete el formulario y un especialista se pondrá en contacto con usted a la brevedad.</p>
 
-          <div class="relative z-10">
-            <h3 class="text-2xl font-bold text-white mb-8">
-              Envíenos un Mensaje
-            </h3>
-            <form id="contactForm" class="space-y-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form id="contactForm" class="space-y-5 relative z-10">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div class="space-y-2">
-                  <label class="text-sm font-medium text-gray-300">Nombre</label>
+                  <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Nombre Completo</label>
                   <input
                     type="text"
                     name="nombre"
                     required
-                    class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"
-                    placeholder="Juan Pérez"
+                    class="w-full bg-primary/50 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30 focus:bg-primary/80 transition-all placeholder:text-white/20"
+                    placeholder="Ej. Juan Pérez"
                   />
                 </div>
                 <div class="space-y-2">
-                  <label class="text-sm font-medium text-gray-300">Empresa</label>
+                  <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Empresa</label>
                   <input
                     type="text"
                     name="empresa"
-                    class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"
-                    placeholder="Empresa S.A."
+                    class="w-full bg-primary/50 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30 focus:bg-primary/80 transition-all placeholder:text-white/20"
+                    placeholder="Ej. Constructora XYZ"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="space-y-2">
+                  <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Correo Electrónico</label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    class="w-full bg-primary/50 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30 focus:bg-primary/80 transition-all placeholder:text-white/20"
+                    placeholder="ejemplo@empresa.com"
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Teléfono</label>
+                  <input
+                    type="tel"
+                    name="telefono"
+                    class="w-full bg-primary/50 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30 focus:bg-primary/80 transition-all placeholder:text-white/20"
+                    placeholder="+52 (55) 0000 0000"
                   />
                 </div>
               </div>
 
               <div class="space-y-2">
-                <label class="text-sm font-medium text-gray-300">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"
-                  placeholder="juan@empresa.com"
-                />
-              </div>
-
-               <div class="space-y-2">
-                <label class="text-sm font-medium text-gray-300">Teléfono</label>
-                <input
-                  type="tel"
-                  name="telefono"
-                  class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"
-                  placeholder="+52 55 1234 5678"
-                />
-              </div>
-
-              <div class="space-y-2">
-                <label class="text-sm font-medium text-gray-300">Mensaje</label>
+                <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Detalles del Proyecto</label>
                 <textarea
                   name="mensaje"
-                  rows="4"
+                  rows="5"
                   required
-                  class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"
-                  placeholder="Describa su proyecto..."></textarea>
+                  class="w-full bg-primary/50 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30 focus:bg-primary/80 transition-all placeholder:text-white/20 resize-none"
+                  placeholder="Describa brevemente sus necesidades, ubicación y tiempos estimados..."></textarea>
               </div>
 
               <button
                 type="submit"
                 id="submitBtn"
-                class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-all transform hover:scale-[1.01] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg mt-4"
               >
-                <span>Enviar Mensaje</span> <Send size={18} />
+                <span>Enviar Solicitud</span> <Send size={16} />
               </button>
             </form>
           </div>
@@ -206,19 +199,14 @@ import formBg from "../assets/images/Plannig.webp";
       </div>
     </div>
   </section>
-
-  <!-- Map Section (Placeholder) -->
-  <section class="h-[400px] w-full bg-gray-900 relative">
-    <div class="absolute inset-0 flex items-center justify-center">
-      <p class="text-gray-500">Mapa Interactivo (Google Maps Integration)</p>
-    </div>
-  </section>
 </Layout>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
+<script>
+  import apiClient from "../lib/apiClient";
+
+  document.addEventListener('astro:page-load', () => {
+    const form = document.getElementById('contactForm') as HTMLFormElement;
+    const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
     const btnText = submitBtn?.querySelector('span');
 
     if (form && submitBtn && btnText) {
@@ -242,16 +230,9 @@ import formBg from "../assets/images/Plannig.webp";
         };
 
         try {
-          const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:3000';
-          const response = await fetch(`${apiUrl}/api/leads`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-          });
+          const response = await apiClient.post('/leads', data);
 
-          if (!response.ok) {
+          if (response.status !== 201 && response.status !== 200) {
             throw new Error('Error en la respuesta del servidor');
           }
 

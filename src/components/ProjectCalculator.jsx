@@ -81,8 +81,8 @@ const ProjectCalculator = () => {
 
   return (
     <section className="relative py-24 bg-secondary overflow-hidden">
-      {/* Video Background for Section */}
-      <div className="absolute inset-0 z-0 opacity-20">
+      {/* Video Background for Section - Increased Opacity & Sticky-like feel */}
+      <div className="absolute inset-0 z-0 opacity-40">
         <video
           className="w-full h-full object-cover"
           autoPlay
@@ -95,7 +95,7 @@ const ProjectCalculator = () => {
             type="video/mp4"
           />
         </video>
-        <div className="absolute inset-0 bg-secondary/90"></div>
+        <div className="absolute inset-0 bg-secondary/80"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">

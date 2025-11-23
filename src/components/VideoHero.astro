@@ -13,9 +13,9 @@ const { videoUrl, mobileImage, title, subtitle } = Astro.props;
 ---
 
 <section class="relative w-full h-screen overflow-hidden">
-  <!-- Background Video with optimized loading -->
+  <!-- Background Video with optimized loading - Fixed for sticky effect -->
   <video
-    class="absolute top-0 left-0 w-full h-full object-cover hidden md:block"
+    class="fixed top-0 left-0 w-full h-full object-cover hidden md:block -z-10"
     autoplay
     muted
     loop
@@ -27,18 +27,18 @@ const { videoUrl, mobileImage, title, subtitle } = Astro.props;
     Your browser does not support the video tag.
   </video>
 
-  <!-- Mobile Image Fallback -->
+  <!-- Mobile Image Fallback - Fixed -->
   <img
     src={mobileImage}
     alt="Background"
-    class="absolute inset-0 md:hidden w-full h-full object-cover"
+    class="fixed inset-0 md:hidden w-full h-full object-cover -z-10"
     loading="eager"
     fetchpriority="high"
   />
 
-  <!-- Enhanced gradient overlay for better text readability -->
+  <!-- Enhanced gradient overlay - Fixed -->
   <div
-    class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/70 z-10"
+    class="fixed inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/70 z-0"
   >
   </div>
 

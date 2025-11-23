@@ -110,8 +110,14 @@ const { title = "Instalaciones García's" } = Astro.props;
   <body
     class="flex flex-col min-h-screen font-sans bg-primary text-text-main antialiased selection:bg-white selection:text-black"
   >
-    <SpeedInsights />
-    <Analytics />
+    {
+      process.env.VERCEL === "1" && (
+        <>
+          <SpeedInsights />
+          <Analytics />
+        </>
+      )
+    }
     <!-- Navbar with Glassmorphism -->
     <header
       id="navbar"
@@ -652,88 +658,101 @@ const { title = "Instalaciones García's" } = Astro.props;
 </style>
 
 <script>
-  // Navbar scroll effect with Glassmorphism
-  const navbar = document.getElementById("navbar");
-  const navbarBg = document.getElementById("navbar-bg");
+  // Navbar logic wrapper to support View Transitions
+  function setupNavbar() {
+    // Navbar scroll effect with Glassmorphism
+    const navbar = document.getElementById("navbar");
+    const navbarBg = document.getElementById("navbar-bg");
 
-  let lastScrollY = window.scrollY;
-  let ticking = false;
+    let lastScrollY = window.scrollY;
+    let ticking = false;
 
-  window.addEventListener("scroll", () => {
-    lastScrollY = window.scrollY;
+    const onScroll = () => {
+      lastScrollY = window.scrollY;
 
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        if (lastScrollY > 50) {
-          navbar?.classList.add("border-white/10");
-          navbar?.classList.remove("border-white/0");
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (lastScrollY > 50) {
+            navbar?.classList.add("border-white/10");
+            navbar?.classList.remove("border-white/0");
 
-          navbarBg?.classList.remove("bg-black/0", "backdrop-blur-[0px]");
-          navbarBg?.classList.add("bg-black/80", "backdrop-blur-md");
-        } else {
-          navbar?.classList.remove("border-white/10");
-          navbar?.classList.add("border-white/0");
+            navbarBg?.classList.remove("bg-black/0", "backdrop-blur-[0px]");
+            navbarBg?.classList.add("bg-black/80", "backdrop-blur-md");
+          } else {
+            navbar?.classList.remove("border-white/10");
+            navbar?.classList.add("border-white/0");
 
-          navbarBg?.classList.add("bg-black/0", "backdrop-blur-[0px]");
-          navbarBg?.classList.remove("bg-black/80", "backdrop-blur-md");
+            navbarBg?.classList.add("bg-black/0", "backdrop-blur-[0px]");
+            navbarBg?.classList.remove("bg-black/80", "backdrop-blur-md");
+          }
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    const toggleMenu = () => {
+      mobileMenu?.classList.toggle("hidden");
+
+      // Add solid background when menu is open
+      // Animate hamburger to X
+      const spans = mobileMenuButton?.querySelectorAll("span");
+
+      if (!mobileMenu?.classList.contains("hidden")) {
+        navbarBg?.classList.add("bg-black/95", "backdrop-blur-xl");
+
+        // Transform to X
+        if (spans && spans.length === 3) {
+          spans[0].classList.add("rotate-45", "translate-x-px");
+          spans[1].classList.add("opacity-0", "translate-x-2");
+          spans[2].classList.add("-rotate-45", "translate-x-px");
         }
-        ticking = false;
-      });
+      } else {
+        if (window.scrollY <= 50) {
+          navbarBg?.classList.remove("bg-black/95", "backdrop-blur-xl");
+        }
 
-      ticking = true;
-    }
-  });
-
-  // Mobile menu toggle
-  const mobileMenuButton = document.getElementById("mobile-menu-button");
-  const mobileMenu = document.getElementById("mobile-menu");
-
-  mobileMenuButton?.addEventListener("click", () => {
-    mobileMenu?.classList.toggle("hidden");
-
-    // Add solid background when menu is open
-    // Animate hamburger to X
-    const spans = mobileMenuButton?.querySelectorAll("span");
-
-    if (!mobileMenu?.classList.contains("hidden")) {
-      navbarBg?.classList.add("bg-black/95", "backdrop-blur-xl");
-
-      // Transform to X
-      if (spans && spans.length === 3) {
-        spans[0].classList.add("rotate-45", "translate-x-px");
-        spans[1].classList.add("opacity-0", "translate-x-2");
-        spans[2].classList.add("-rotate-45", "translate-x-px");
+        // Reset to hamburger
+        if (spans && spans.length === 3) {
+          spans[0].classList.remove("rotate-45", "translate-x-px");
+          spans[1].classList.remove("opacity-0", "translate-x-2");
+          spans[2].classList.remove("-rotate-45", "translate-x-px");
+        }
       }
-    } else {
-      if (window.pageYOffset <= 50) {
-        navbarBg?.classList.remove("bg-black/95", "backdrop-blur-xl");
-      }
+    };
 
-      // Reset to hamburger
-      if (spans && spans.length === 3) {
-        spans[0].classList.remove("rotate-45", "translate-x-px");
-        spans[1].classList.remove("opacity-0", "translate-x-2");
-        spans[2].classList.remove("-rotate-45", "translate-x-px");
-      }
-    }
-  });
+    mobileMenuButton?.addEventListener("click", toggleMenu);
 
-  // Spotlight Effect Logic
-  const spotlightGroups = document.querySelectorAll(".spotlight-group");
+    // Spotlight Effect Logic
+    const spotlightGroups = document.querySelectorAll(".spotlight-group");
 
-  spotlightGroups.forEach((group) => {
-    group.addEventListener("mousemove", (e) => {
-      const mouseEvent = e as MouseEvent;
-      const element = group as HTMLElement;
+    spotlightGroups.forEach((group) => {
+      group.addEventListener("mousemove", (e) => {
+        const mouseEvent = e as MouseEvent;
+        const element = group as HTMLElement;
 
-      requestAnimationFrame(() => {
-        const rect = element.getBoundingClientRect();
-        const x = mouseEvent.clientX - rect.left;
-        const y = mouseEvent.clientY - rect.top;
+        requestAnimationFrame(() => {
+          const rect = element.getBoundingClientRect();
+          const x = mouseEvent.clientX - rect.left;
+          const y = mouseEvent.clientY - rect.top;
 
-        element.style.setProperty("--mouse-x", `${x}px`);
-        element.style.setProperty("--mouse-y", `${y}px`);
+          element.style.setProperty("--mouse-x", `${x}px`);
+          element.style.setProperty("--mouse-y", `${y}px`);
+        });
       });
     });
-  });
+  }
+
+  // Run on initial load
+  setupNavbar();
+
+  // Run on subsequent navigations
+  document.addEventListener("astro:page-load", setupNavbar);
 </script>

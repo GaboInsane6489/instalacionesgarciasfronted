@@ -137,8 +137,7 @@ const SolutionsGuide = () => {
                 onClick={() => handleCardClick(solution.id)}
               >
                 <motion.div
-                  layout
-                  className={`relative rounded-2xl border ${solution.borderColor} bg-primary/50 backdrop-blur-sm overflow-hidden transition-all duration-300 ${
+                  className={`relative rounded-2xl border ${solution.borderColor} bg-primary/50 backdrop-blur-sm overflow-hidden transition-all duration-300 will-change-transform ${
                     isExpanded
                       ? "shadow-2xl shadow-white/10"
                       : "hover:shadow-xl hover:shadow-white/5"

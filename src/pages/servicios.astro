@@ -18,65 +18,6 @@ import ProjectCalculator from "../components/ProjectCalculator.jsx";
 import heroBg from "../assets/images/Construction6.webp";
 import whyUsImage from "../assets/images/CoffeRemodeling.webp";
 
-// Project Images
-import project1 from "../assets/images/CityConstruction.webp";
-import project2 from "../assets/images/CityConstruction2.webp";
-import project3 from "../assets/images/ConstructionFloor.webp";
-import project4 from "../assets/images/WheelLoaderConstructionMachine.webp";
-import project5 from "../assets/images/Construction2.webp";
-import project6 from "../assets/images/Construction3.webp";
-
-const projects = [
-  {
-    id: 1,
-    image: project1.src,
-    title: "Complejo Industrial Norte",
-    description:
-      "Ejecución integral de instalaciones eléctricas de media tensión para nave industrial de 5,000 m². El proyecto incluyó la instalación de subestación propia, tableros de distribución certificados y sistema de iluminación LED de alta eficiencia.",
-    category: "Instalación Eléctrica",
-  },
-  {
-    id: 2,
-    image: project2.src,
-    title: "Torre Corporativa Reforma",
-    description:
-      "Remodelación estructural y acabados de lujo para oficinas corporativas en planta alta. Se utilizaron sistemas de drywall acústico de última generación para garantizar la privacidad entre salas de juntas.",
-    category: "Remodelación",
-  },
-  {
-    id: 3,
-    image: project3.src,
-    title: "Infraestructura Subterránea",
-    description:
-      "Mantenimiento mayor y modernización de túneles de servicio y canalizaciones eléctricas subterráneas. Este proyecto crítico requirió ingeniería especializada para el reemplazo de cableado de potencia.",
-    category: "Mantenimiento",
-  },
-  {
-    id: 4,
-    image: project4.src,
-    title: "Centro Logístico Bajío",
-    description:
-      "Construcción de obra civil para patio de maniobras y almacén logístico. Se ejecutaron trabajos de nivelación, cimentación reforzada y losas de concreto de alta resistencia para tráfico pesado.",
-    category: "Obra Civil",
-  },
-  {
-    id: 5,
-    image: project5.src,
-    title: "Planta de Manufactura",
-    description:
-      "Instalación de líneas de producción y sistemas de fuerza para maquinaria pesada. Nuestro equipo técnico colaboró estrechamente con los ingenieros de planta para realizar las conexiones.",
-    category: "Industrial",
-  },
-  {
-    id: 6,
-    image: project6.src,
-    title: "Desarrollo Residencial Vertical",
-    description:
-      "Consultoría y ejecución de instalaciones hidrosanitarias y eléctricas para edificio residencial de 15 niveles. Se implementaron sistemas de presión constante y calentamiento solar centralizado.",
-    category: "Residencial",
-  },
-];
-
 const services = [
   {
     title: "Instalaciones Eléctricas",
@@ -146,19 +87,20 @@ const services = [
   </section>
 
   <!-- Services Grid -->
-  <section class="py-24 bg-primary relative">
+  <section class="py-16 bg-primary relative">
     <div class="container mx-auto px-6">
       <div
         id="spotlight-container"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 spotlight-group"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 spotlight-group"
         style="--mouse-x: 0px; --mouse-y: 0px;"
       >
         {
-          services.map((service) => (
+          services.map((service, index) => (
             <ServiceCard
               title={service.title}
               description={service.description}
               Icon={service.icon}
+              index={index}
             />
           ))
         }
@@ -167,7 +109,7 @@ const services = [
   </section>
 
   <!-- Project Gallery Carousel -->
-  <ProjectGallery client:visible projects={projects} />
+  <ProjectGallery client:visible />
 
   <!-- Interactive Project Calculator -->
   <ProjectCalculator client:visible />

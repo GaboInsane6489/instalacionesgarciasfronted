@@ -8,23 +8,23 @@
   --color-text-main: #ededed;
   --color-text-muted: #a1a1a1;
 
-  /* Enterprise Typography Scale */
-  --text-xs: 12px;
-  --text-xs--line-height: 16px;
-  --text-sm: 13px;
-  --text-sm--line-height: 20px;
-  --text-base: 14px;
+  /* Enterprise Typography Scale - Refined/Smaller */
+  --text-xs: 11px;
+  --text-xs--line-height: 14px;
+  --text-sm: 12px;
+  --text-sm--line-height: 18px;
+  --text-base: 13px; /* Reduced from 14px */
   --text-base--line-height: 20px;
-  --text-lg: 16px;
-  --text-lg--line-height: 24px;
-  --text-xl: 18px;
-  --text-xl--line-height: 28px;
-  --text-2xl: 20px;
-  --text-2xl--line-height: 28px;
-  --text-3xl: 24px;
-  --text-3xl--line-height: 32px;
-  --text-4xl: 30px;
-  --text-4xl--line-height: 36px;
+  --text-lg: 15px; /* Reduced from 16px */
+  --text-lg--line-height: 22px;
+  --text-xl: 17px; /* Reduced from 18px */
+  --text-xl--line-height: 26px;
+  --text-2xl: 19px; /* Reduced from 20px */
+  --text-2xl--line-height: 26px;
+  --text-3xl: 22px; /* Reduced from 24px */
+  --text-3xl--line-height: 30px;
+  --text-4xl: 28px; /* Reduced from 30px */
+  --text-4xl--line-height: 34px;
 }
 
 @layer base {

@@ -1,17 +1,51 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
+import apiClient from "../lib/apiClient";
 
-const ProjectGallery = ({ projects = [] }) => {
+const ProjectGallery = ({ projects: initialProjects = [] }) => {
+  const [projects, setProjects] = useState(initialProjects);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [loading, setLoading] = useState(initialProjects.length === 0);
+
+  useEffect(() => {
+    if (initialProjects.length === 0) {
+      const fetchProjects = async () => {
+        try {
+          const response = await apiClient.get("/proyectos");
+          setProjects(response.data);
+        } catch (error) {
+          console.error("Error fetching projects:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchProjects();
+    }
+  }, [initialProjects]);
+
+  // Auto-play logic
+  useEffect(() => {
+    if (projects.length === 0) return;
+
+    const timer = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [projects.length, currentIndex]); // Reset timer on slide change
 
   const nextSlide = () => {
+    if (projects.length === 0) return;
     setDirection(1);
     setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
+    if (projects.length === 0) return;
     setDirection(-1);
     setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
   };
@@ -32,6 +66,18 @@ const ProjectGallery = ({ projects = [] }) => {
       opacity: 0,
     }),
   };
+
+  if (loading) {
+    return (
+      <section className="relative py-24 overflow-hidden min-h-screen flex items-center justify-center bg-black">
+        <div className="text-white">Cargando proyectos...</div>
+      </section>
+    );
+  }
+
+  if (projects.length === 0) {
+    return null; // Or show a message "No projects found"
+  }
 
   return (
     <section className="relative py-24 overflow-hidden min-h-screen flex items-center">
@@ -74,7 +120,10 @@ const ProjectGallery = ({ projects = [] }) => {
               >
                 <motion.img
                   key={currentIndex}
-                  src={projects[currentIndex].image}
+                  src={
+                    projects[currentIndex].image ||
+                    "https://via.placeholder.com/800x600?text=No+Image"
+                  } // Fallback image
                   custom={direction}
                   variants={variants}
                   initial="enter"
