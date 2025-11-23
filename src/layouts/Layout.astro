@@ -11,6 +11,7 @@ import {
   Instagram,
   ArrowRight,
 } from "lucide-react";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 /**
  * Layout Component
@@ -73,6 +74,7 @@ const { title = "Instalaciones García's" } = Astro.props;
   <body
     class="flex flex-col min-h-screen font-sans bg-primary text-text-main antialiased selection:bg-white selection:text-black"
   >
+    <SpeedInsights />
     <!-- Navbar with Glassmorphism -->
     <header
       id="navbar"
