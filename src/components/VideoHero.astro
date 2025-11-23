@@ -28,11 +28,13 @@ const { videoUrl, mobileImage, title, subtitle } = Astro.props;
   </video>
 
   <!-- Mobile Image Fallback -->
-  <div
-    class="absolute inset-0 md:hidden bg-cover bg-center bg-no-repeat"
-    style={`background-image: url('${mobileImage}');`}
-  >
-  </div>
+  <img
+    src={mobileImage}
+    alt="Background"
+    class="absolute inset-0 md:hidden w-full h-full object-cover"
+    loading="eager"
+    fetchpriority="high"
+  />
 
   <!-- Enhanced gradient overlay for better text readability -->
   <div

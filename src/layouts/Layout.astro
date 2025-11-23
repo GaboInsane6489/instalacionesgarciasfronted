@@ -71,6 +71,41 @@ const { title = "Instalaciones García's" } = Astro.props;
 
     <title>{title}</title>
     <ClientRouter />
+
+    <!-- JSON-LD Structured Data for Local Business -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        "name": "Instalaciones García's",
+        "image": "https://instalacionesgarciasfronted.vercel.app/favicon.svg",
+        "@id": "https://instalacionesgarciasfronted.vercel.app",
+        "url": "https://instalacionesgarciasfronted.vercel.app",
+        "telephone": "+525589001234",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Tecnológico 2405, Piso 8",
+          "addressLocality": "Ciudad de México",
+          "postalCode": "11560",
+          "addressCountry": "MX"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 19.4326,
+          "longitude": -99.1332
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        "sameAs": [
+          "https://www.facebook.com/instalacionesgarcias",
+          "https://www.instagram.com/instalacionesgarcias"
+        ]
+      }
+    </script>
   </head>
   <body
     class="flex flex-col min-h-screen font-sans bg-primary text-text-main antialiased selection:bg-white selection:text-black"
@@ -621,21 +656,31 @@ const { title = "Instalaciones García's" } = Astro.props;
   const navbar = document.getElementById("navbar");
   const navbarBg = document.getElementById("navbar-bg");
 
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
   window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset;
+    lastScrollY = window.scrollY;
 
-    if (currentScroll > 50) {
-      navbar?.classList.add("border-white/10");
-      navbar?.classList.remove("border-white/0");
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        if (lastScrollY > 50) {
+          navbar?.classList.add("border-white/10");
+          navbar?.classList.remove("border-white/0");
 
-      navbarBg?.classList.remove("bg-black/0", "backdrop-blur-[0px]");
-      navbarBg?.classList.add("bg-black/80", "backdrop-blur-md");
-    } else {
-      navbar?.classList.remove("border-white/10");
-      navbar?.classList.add("border-white/0");
+          navbarBg?.classList.remove("bg-black/0", "backdrop-blur-[0px]");
+          navbarBg?.classList.add("bg-black/80", "backdrop-blur-md");
+        } else {
+          navbar?.classList.remove("border-white/10");
+          navbar?.classList.add("border-white/0");
 
-      navbarBg?.classList.add("bg-black/0", "backdrop-blur-[0px]");
-      navbarBg?.classList.remove("bg-black/80", "backdrop-blur-md");
+          navbarBg?.classList.add("bg-black/0", "backdrop-blur-[0px]");
+          navbarBg?.classList.remove("bg-black/80", "backdrop-blur-md");
+        }
+        ticking = false;
+      });
+
+      ticking = true;
     }
   });
 
@@ -678,12 +723,17 @@ const { title = "Instalaciones García's" } = Astro.props;
 
   spotlightGroups.forEach((group) => {
     group.addEventListener("mousemove", (e) => {
-      const rect = group.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const mouseEvent = e as MouseEvent;
+      const element = group as HTMLElement;
 
-      group.style.setProperty("--mouse-x", `${x}px`);
-      group.style.setProperty("--mouse-y", `${y}px`);
+      requestAnimationFrame(() => {
+        const rect = element.getBoundingClientRect();
+        const x = mouseEvent.clientX - rect.left;
+        const y = mouseEvent.clientY - rect.top;
+
+        element.style.setProperty("--mouse-x", `${x}px`);
+        element.style.setProperty("--mouse-y", `${y}px`);
+      });
     });
   });
 </script>
