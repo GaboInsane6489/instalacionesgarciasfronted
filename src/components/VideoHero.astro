@@ -20,7 +20,7 @@ const { videoUrl, mobileImage, title, subtitle } = Astro.props;
     muted
     loop
     playsinline
-    preload="metadata"
+    preload="none"
     poster={mobileImage}
   >
     <source src={videoUrl} type="video/mp4" />
