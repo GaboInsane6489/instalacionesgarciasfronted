@@ -1,127 +1,249 @@
-# ⚡ Instalaciones García's - Enterprise Web Platform
+# 🏗️ Instalaciones García's - Frontend Project
 
-![Astro](https://img.shields.io/badge/Astro-5.0-orange?style=for-the-badge&logo=astro)
-![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-Latest-black?style=for-the-badge&logo=framer)
-![Status](https://img.shields.io/badge/Status-Production_Ready-success?style=for-the-badge)
+> **Versión:** 1.0.0
+> **Estado:** Producción
+> **Stack:** Astro v5 + React + TailwindCSS
 
-> **Una experiencia digital premium para el sector de ingeniería y construcción.**
-> Este proyecto redefine la presencia digital corporativa con un diseño de alto impacto, animaciones fluidas y herramientas interactivas de vanguardia.
+Bienvenido a la documentación oficial del repositorio frontend de **Instalaciones García's**. Este documento sirve como la fuente de verdad técnica para desarrolladores, arquitectos y mantenedores del proyecto.
 
 ---
 
-## 🚀 Características Destacadas
+## 📑 Tabla de Contenidos
 
-### 🎨 Diseño & UX Premium
-
-- **Glassmorphism UI:** Interfaz moderna con efectos de desenfoque y transparencias dinámicas.
-- **Astro View Transitions:** Navegación SPA (Single Page Application) nativa sin recargas.
-- **Micro-interacciones:** Efectos de hover, cursores magnéticos y feedback visual sutil.
-- **Spotlight Effect:** Iluminación dinámica en tarjetas que sigue el cursor del usuario.
-
-### 🛠️ Funcionalidades Avanzadas
-
-- **Calculadora de Proyectos Inteligente:** Estimación en tiempo real de costos y materiales con integración directa a WhatsApp.
-- **Galería Interactiva:** Carrusel de proyectos con fondo de video y transiciones cinematográficas.
-- **Mega Footer Corporativo:** Estructura de navegación completa con datos empresariales.
-- **Animaciones Scroll-Trigger:** Efectos "Mask Reveal" y "Counter Up" activados al visualizar.
+1.  [Visión General del Proyecto](#visión-general-del-proyecto)
+2.  [Arquitectura Técnica](#arquitectura-técnica)
+3.  [Stack Tecnológico](#stack-tecnológico)
+4.  [Estructura del Proyecto](#estructura-del-proyecto)
+5.  [Instalación y Configuración](#instalación-y-configuración)
+6.  [Guía de Desarrollo](#guía-de-desarrollo)
+7.  [Componentes Principales](#componentes-principales)
+8.  [Estrategia de Assets y Rendimiento](#estrategia-de-assets-y-rendimiento)
+9.  [Navegación y SPA](#navegación-y-spa)
+10. [Despliegue](#despliegue)
 
 ---
 
-## 🛠️ Stack Tecnológico
+## 1. 🔭 Visión General del Proyecto
 
-Este proyecto ha sido construido utilizando las tecnologías más modernas del ecosistema web:
+Este proyecto es la interfaz pública (Frontend) para la empresa **Instalaciones García's**, líder en servicios eléctricos e industriales. El objetivo principal del sitio es convertir visitantes en clientes potenciales mediante una experiencia de usuario (UX) premium, rápida y confiable.
 
-| Tecnología                                          | Uso Principal                                             |
-| --------------------------------------------------- | --------------------------------------------------------- |
-| **[Astro](https://astro.build/)**                   | Framework principal (Islands Architecture)                |
-| **[React](https://react.dev/)**                     | Componentes interactivos complejos (Calculadora, Galería) |
-| **[Tailwind CSS](https://tailwindcss.com/)**        | Sistema de diseño y estilos utilitarios                   |
-| **[Framer Motion](https://www.framer.com/motion/)** | Motor de animaciones complejas y gestos                   |
-| **[Lucide React](https://lucide.dev/)**             | Iconografía vectorial moderna y ligera                    |
+### Objetivos Clave
+
+- **Velocidad Extrema:** Cargas iniciales cercanas a 0ms utilizando la arquitectura de Islas de Astro.
+- **Estética Premium:** Diseño visual de alta gama con animaciones fluidas y vidriosidad (Glassmorphism).
+- **SEO Optimizado:** Renderizado estático (SSG) para máxima indexabilidad.
+- **Interactividad:** Componentes React complejos (Galerías, Calculadoras) hidratados solo cuando es necesario.
 
 ---
 
-## 📂 Estructura del Proyecto
+## 2. 🏛️ Arquitectura Técnica
+
+El proyecto utiliza una arquitectura **Multi-Page Application (MPA)** potenciada con capacidades de **Single Page Application (SPA)** mediante `ClientRouter`.
+
+### Conceptos Core
+
+- **Astro Islands (Islas):** El sitio es mayoritariamente HTML estático. Solo las "islas" de interactividad (componentes React) cargan JavaScript. Esto reduce el bundle size drásticamente.
+- **View Transitions:** Utilizamos el router del cliente de Astro para navegar entre páginas sin recargar el navegador completo, manteniendo el estado de animaciones y reduciendo el consumo de datos.
+- **Lazy Loading:** Todo recurso que no es crítico para la primera pintura (First Contentful Paint) se carga de manera diferida.
+
+---
+
+## 3. 🛠️ Stack Tecnológico
+
+### Core
+
+- **Framework:** [Astro v5.16](https://astro.build/) - El motor principal.
+- **UI Library:** [React v19](https://react.dev/) - Para componentes interactivos complejos.
+- **Styling:** [Tailwind CSS v3.4](https://tailwindcss.com/) - Utility-first CSS framework.
+- **Lenguaje:** JavaScript (ES6+) / JSX.
+
+### Librerías Adicionales
+
+- **Framer Motion:** Para animaciones complejas en componentes React (Galería).
+- **Lucide React:** Sistema de iconos SVG ligeros y consistentes.
+- **Canvas Confetti:** Efectos visuales de celebración.
+
+### Herramientas de Build
+
+- **Vite:** Bundler de próxima generación, ultra rápido.
+- **PNPM:** Gestor de paquetes eficiente.
+
+---
+
+## 4. 📂 Estructura del Proyecto
 
 ```bash
-InstalacionesGarciasFronted/
-├── public/              # Assets estáticos públicos
+/
+├── public/              # Archivos estáticos públicos (favicon, robots.txt)
 ├── src/
-│   ├── components/      # Componentes UI reutilizables
-│   │   ├── ProjectCalculator.jsx  # 🧮 Simulador de costos
-│   │   ├── ProjectGallery.jsx     # 📸 Carrusel interactivo
-│   │   ├── SolutionsGuide.jsx     # 📘 Guía de soluciones
-│   │   ├── ServiceCard.astro      # 🃏 Tarjeta con efecto spotlight
-│   │   └── VideoHero.astro        # 🎥 Hero section con video
-│   ├── layouts/         # Plantillas base (Layout.astro)
-│   ├── pages/           # Rutas del sitio
-│   │   ├── index.astro      # 🏠 Página de inicio
-│   │   └── servicios.astro  # 🛠️ Página de servicios
-│   └── styles/          # Estilos globales (global.css)
+│   ├── assets/          # Assets procesados por Vite/Astro
+│   │   ├── images/      # Imágenes locales (JPG, PNG, AVIF)
+│   │   └── videos/      # Videos locales (MP4, WebM)
+│   ├── components/      # Componentes reutilizables
+│   │   ├── ProjectGallery.jsx   # Galería interactiva (React)
+│   │   ├── ProjectCalculator.jsx # Calculadora de costos (React)
+│   │   ├── ServiceCard.astro    # Tarjeta de servicio (Astro)
+│   │   ├── VideoHero.astro      # Componente Hero con video (Astro)
+│   │   └── SolutionsGuide.jsx   # Guía interactiva (React)
+│   ├── layouts/         # Plantillas base de páginas
+│   │   └── Layout.astro # Layout principal (Navbar, Footer, SEO)
+│   ├── pages/           # Rutas del sitio (File-system routing)
+│   │   ├── index.astro      # Página de Inicio (/)
+│   │   ├── servicios.astro  # Página de Servicios (/servicios)
+│   │   ├── proyectos.astro  # Página de Proyectos (/proyectos)
+│   │   └── contacto.astro   # Página de Contacto (/contacto)
+│   └── styles/          # Estilos globales
+│       └── global.css   # Configuraciones base de Tailwind y fuentes
 ├── astro.config.mjs     # Configuración de Astro
-├── tailwind.config.mjs  # Configuración de diseño
+├── tailwind.config.mjs  # Configuración de Tailwind
 └── package.json         # Dependencias y scripts
 ```
 
 ---
 
-## ⚡ Guía de Instalación
+## 5. 🚀 Instalación y Configuración
 
-Sigue estos pasos para levantar el proyecto en tu entorno local:
+Sigue estos pasos para levantar el entorno de desarrollo localmente.
 
-### 1. Prerrequisitos
+### Prerrequisitos
 
-- Node.js (v18 o superior)
-- pnpm (recomendado) o npm
+- Node.js v18.14.1 o superior.
+- PNPM (recomendado) o NPM.
 
-### 2. Clonar el repositorio
+### Pasos
 
-```bash
-git clone https://github.com/tu-usuario/instalaciones-garcias.git
-cd instalaciones-garcias
-```
+1.  **Clonar el repositorio:**
 
-### 3. Instalar dependencias
+    ```bash
+    git clone <url-del-repo>
+    cd InstalacionesGarciasFronted
+    ```
 
-Utilizamos `pnpm` para una gestión de paquetes rápida y eficiente.
+2.  **Instalar dependencias:**
 
-```bash
-pnpm install
-```
+    ```bash
+    pnpm install
+    ```
 
-### 4. Iniciar servidor de desarrollo
-
-```bash
-pnpm dev
-```
-
-El sitio estará disponible en `http://localhost:4321`.
+3.  **Iniciar servidor de desarrollo:**
+    ```bash
+    pnpm dev
+    ```
+    El sitio estará disponible en `http://localhost:4321`.
 
 ---
 
-## 🚢 Scripts Disponibles
+## 6. � Guía de Desarrollo
 
-| Comando            | Descripción                                           |
-| ------------------ | ----------------------------------------------------- |
-| `pnpm dev`         | Inicia el servidor de desarrollo local                |
-| `pnpm build`       | Genera la versión de producción optimizada en `/dist` |
-| `pnpm preview`     | Vista previa local de la versión de producción        |
-| `pnpm astro check` | Ejecuta diagnósticos y chequeo de tipos               |
+### Comandos Disponibles
+
+| Comando            | Descripción                                                  |
+| :----------------- | :----------------------------------------------------------- |
+| `pnpm dev`         | Inicia el servidor local con Hot Module Replacement (HMR).   |
+| `pnpm build`       | Compila el sitio para producción en la carpeta `dist/`.      |
+| `pnpm preview`     | Sirve la versión compilada localmente para pruebas finales.  |
+| `pnpm astro check` | Ejecuta verificaciones de tipos y errores en archivos Astro. |
+
+### Flujo de Trabajo Recomendado
+
+1.  **Crear Componentes:** Si es estático, usa `.astro`. Si necesita estado (useState, useEffect), usa `.jsx` (React).
+2.  **Estilos:** Usa clases de Tailwind siempre que sea posible. Para animaciones CSS complejas, usa la etiqueta `<style>` dentro del componente Astro o `global.css`.
+3.  **Assets:** Coloca imágenes en `src/assets/images`. Impórtalas en los archivos Astro/JS para que Vite las optimice.
 
 ---
 
-## 🌟 Optimizaciones Implementadas
+## 7. 🧩 Componentes Principales
 
-- **Lazy Loading:** Componentes pesados (React) cargan solo cuando son visibles (`client:visible`).
-- **SEO:** Etiquetas canónicas, meta descripciones y estructura semántica HTML5.
-- **Performance:** Videos optimizados y carga diferida de recursos no críticos.
-- **Accesibilidad:** Contraste adecuado y navegación por teclado.
+### `Layout.astro`
+
+Es el contenedor maestro. Maneja:
+
+- **SEO:** Meta etiquetas dinámicas (Title, Description, OG Tags).
+- **Navegación:** Navbar responsivo con efecto glassmorphism.
+- **Footer:** Pie de página masivo con enlaces y datos de contacto.
+- **ClientRouter:** Habilita la navegación SPA.
+
+### `VideoHero.astro`
+
+Componente de alto impacto visual para las cabeceras de página.
+
+- **Props:** `videoUrl` (local o remoto), `mobileImage` (fallback), `title`, `subtitle`.
+- **Optimización:** Usa `preload="metadata"` para no bloquear la red.
+
+### `ProjectGallery.jsx`
+
+Carrusel interactivo construido con React y Framer Motion.
+
+- **Hidratación:** Se carga con `client:visible`. No descarga JS hasta que el usuario hace scroll hacia él.
+- **Props:** Recibe un array de objetos `projects` con imágenes importadas localmente.
 
 ---
 
-<div align="center">
-  <p>Desarrollado con ❤️ y excelencia técnica.</p>
-  <p>© 2025 Instalaciones García's</p>
-</div>
+## 8. ⚡ Estrategia de Assets y Rendimiento
+
+### Imágenes
+
+- **Ubicación:** `src/assets/images/`
+- **Procesamiento:** Astro convierte automáticamente a WebP/AVIF y genera srcsets para diferentes tamaños de pantalla.
+- **Uso:**
+  ```astro
+  import myImage from "../assets/images/foto.jpg";
+  <img src={myImage.src} loading="lazy" />
+  ```
+
+### Videos
+
+- **Ubicación:** `src/assets/videos/`
+- **Estrategia:** Videos cortos (<5MB) se sirven localmente. Videos largos deben ser externos o streameados.
+- **Carga:** Siempre usar `preload="metadata"` y `muted` `autoplay` `playsinline` para compatibilidad móvil.
+
+### Lazy Loading
+
+- **Imágenes:** Atributo `loading="lazy"` en todas las imágenes "below the fold" (debajo de la primera pantalla).
+- **Componentes:** Directiva `client:visible` para componentes React pesados.
+
+---
+
+## 9. 🔄 Navegación y SPA
+
+El sitio usa el `ClientRouter` de Astro (anteriormente View Transitions).
+
+### Comportamiento
+
+- El navegador no recarga la página completa.
+- Se intercambia el contenido del `<body>`.
+- Se mantienen los estados de scripts globales.
+
+### Manejo de Eventos
+
+Debido a que el DOM no se destruye completamente, los scripts que dependen de `DOMContentLoaded` solo corren una vez. Para ejecutar código en cada navegación (como reinicializar animaciones), usamos:
+
+```javascript
+document.addEventListener("astro:page-load", () => {
+  // Tu código aquí (ej: inicializar observadores, analytics)
+});
+```
+
+---
+
+## 10. 🚢 Despliegue
+
+El proyecto está configurado para ser desplegado como un sitio estático.
+
+### Build
+
+Ejecuta `pnpm build`. Esto generará una carpeta `dist/` con HTML, CSS y JS puro.
+
+### Hosting Recomendado
+
+- **Vercel / Netlify:** Detección automática de Astro.
+- **Servidor Apache/Nginx:** Simplemente subir el contenido de `dist/`.
+
+### Configuración de Servidor
+
+Asegúrate de que tu servidor sirva los archivos con los headers de caché correctos (Cache-Control) para maximizar la velocidad.
+
+---
+
+> **Instalaciones García's** - Ingeniería y Excelencia.
+> Documentación generada por el equipo de desarrollo.

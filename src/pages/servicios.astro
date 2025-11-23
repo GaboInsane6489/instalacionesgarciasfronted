@@ -14,6 +14,69 @@ import {
 import ProjectGallery from "../components/ProjectGallery.jsx";
 import ProjectCalculator from "../components/ProjectCalculator.jsx";
 
+// Assets
+import heroBg from "../assets/images/Construction6.jpg";
+import whyUsImage from "../assets/images/CoffeRemodeling.jpg";
+
+// Project Images
+import project1 from "../assets/images/CityConstruction.jpg";
+import project2 from "../assets/images/CityConstruction2.jpg";
+import project3 from "../assets/images/ConstructionFloor.jpg";
+import project4 from "../assets/images/WheelLoaderConstructionMachine.jpg";
+import project5 from "../assets/images/Construction2.jpg";
+import project6 from "../assets/images/Construction3.jpg";
+
+const projects = [
+  {
+    id: 1,
+    image: project1.src,
+    title: "Complejo Industrial Norte",
+    description:
+      "Ejecución integral de instalaciones eléctricas de media tensión para nave industrial de 5,000 m². El proyecto incluyó la instalación de subestación propia, tableros de distribución certificados y sistema de iluminación LED de alta eficiencia.",
+    category: "Instalación Eléctrica",
+  },
+  {
+    id: 2,
+    image: project2.src,
+    title: "Torre Corporativa Reforma",
+    description:
+      "Remodelación estructural y acabados de lujo para oficinas corporativas en planta alta. Se utilizaron sistemas de drywall acústico de última generación para garantizar la privacidad entre salas de juntas.",
+    category: "Remodelación",
+  },
+  {
+    id: 3,
+    image: project3.src,
+    title: "Infraestructura Subterránea",
+    description:
+      "Mantenimiento mayor y modernización de túneles de servicio y canalizaciones eléctricas subterráneas. Este proyecto crítico requirió ingeniería especializada para el reemplazo de cableado de potencia.",
+    category: "Mantenimiento",
+  },
+  {
+    id: 4,
+    image: project4.src,
+    title: "Centro Logístico Bajío",
+    description:
+      "Construcción de obra civil para patio de maniobras y almacén logístico. Se ejecutaron trabajos de nivelación, cimentación reforzada y losas de concreto de alta resistencia para tráfico pesado.",
+    category: "Obra Civil",
+  },
+  {
+    id: 5,
+    image: project5.src,
+    title: "Planta de Manufactura",
+    description:
+      "Instalación de líneas de producción y sistemas de fuerza para maquinaria pesada. Nuestro equipo técnico colaboró estrechamente con los ingenieros de planta para realizar las conexiones.",
+    category: "Industrial",
+  },
+  {
+    id: 6,
+    image: project6.src,
+    title: "Desarrollo Residencial Vertical",
+    description:
+      "Consultoría y ejecución de instalaciones hidrosanitarias y eléctricas para edificio residencial de 15 niveles. Se implementaron sistemas de presión constante y calentamiento solar centralizado.",
+    category: "Residencial",
+  },
+];
+
 const services = [
   {
     title: "Instalaciones Eléctricas",
@@ -62,7 +125,8 @@ const services = [
     >
     </div>
     <div
-      class="absolute inset-0 bg-[url('https://cdn.pixabay.com/photo/2016/11/29/09/41/structure-1868765_1280.jpg')] bg-cover bg-center opacity-30"
+      class="absolute inset-0 bg-cover bg-center opacity-30"
+      style={`background-image: url('${heroBg.src}');`}
     >
     </div>
 
@@ -103,10 +167,10 @@ const services = [
   </section>
 
   <!-- Project Gallery Carousel -->
-  <ProjectGallery client:load />
+  <ProjectGallery client:visible projects={projects} />
 
   <!-- Interactive Project Calculator -->
-  <ProjectCalculator client:load />
+  <ProjectCalculator client:visible />
 
   <!-- Why Choose Us - Mini Section -->
   <section class="py-20 bg-secondary border-y border-white/5">
@@ -142,8 +206,9 @@ const services = [
           >
           </div>
           <img
-            src="https://cdn.pixabay.com/photo/2018/07/14/15/27/cafe-3537801_1280.jpg"
+            src={whyUsImage.src}
             alt="Ingenieros trabajando"
+            loading="lazy"
             class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
           />
           <div class="absolute bottom-8 left-8 z-20">

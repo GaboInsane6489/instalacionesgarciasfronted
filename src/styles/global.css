@@ -95,3 +95,21 @@
 .counter-value {
   font-variant-numeric: tabular-nums;
 }
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(100%) skewX(-15deg);
+    opacity: 0;
+  }
+}
+
+.animate-shine {
+  animation: shine 1s ease-in-out infinite;
+}

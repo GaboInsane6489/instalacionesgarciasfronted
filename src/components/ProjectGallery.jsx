@@ -2,64 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 
-const projects = [
-  {
-    id: 1,
-    image:
-      "https://cdn.pixabay.com/photo/2019/02/25/20/13/site-4020496_1280.jpg",
-    title: "Complejo Industrial Norte",
-    description:
-      "Ejecución integral de instalaciones eléctricas de media tensión para nave industrial de 5,000 m². El proyecto incluyó la instalación de subestación propia, tableros de distribución certificados y sistema de iluminación LED de alta eficiencia. Se cumplieron rigurosamente los plazos de entrega de 4 meses, garantizando la operatividad inmediata del cliente. Implementamos protocolos de seguridad avanzados durante toda la obra, resultando en cero incidentes reportables.",
-    category: "Instalación Eléctrica",
-  },
-  {
-    id: 2,
-    image:
-      "https://cdn.pixabay.com/photo/2016/04/28/15/50/construction-site-1359136_1280.jpg",
-    title: "Torre Corporativa Reforma",
-    description:
-      "Remodelación estructural y acabados de lujo para oficinas corporativas en planta alta. Se utilizaron sistemas de drywall acústico de última generación para garantizar la privacidad entre salas de juntas. La coordinación logística fue clave para trabajar en horarios nocturnos sin interrumpir las operaciones diurnas del edificio. El resultado final destaca por su diseño moderno, integración de tecnología y acabados premium en cada detalle.",
-    category: "Remodelación",
-  },
-  {
-    id: 3,
-    image:
-      "https://cdn.pixabay.com/photo/2017/05/15/22/10/tunnel-2316267_1280.jpg",
-    title: "Infraestructura Subterránea",
-    description:
-      "Mantenimiento mayor y modernización de túneles de servicio y canalizaciones eléctricas subterráneas. Este proyecto crítico requirió ingeniería especializada para el reemplazo de cableado de potencia sin cortes prolongados de suministro. Se realizaron pruebas de aislamiento y termografía para certificar la integridad del sistema. La intervención extendió la vida útil de la infraestructura por al menos 20 años más.",
-    category: "Mantenimiento",
-  },
-  {
-    id: 4,
-    image:
-      "https://cdn.pixabay.com/photo/2014/03/11/23/21/site-285645_1280.jpg",
-    title: "Centro Logístico Bajío",
-    description:
-      "Construcción de obra civil para patio de maniobras y almacén logístico. Se ejecutaron trabajos de nivelación, cimentación reforzada y losas de concreto de alta resistencia para tráfico pesado. El proyecto incluyó también el sistema de drenaje pluvial y alumbrado perimetral autónomo. La supervisión constante aseguró el cumplimiento de las normas de calidad ISO y los requerimientos específicos del sector logístico.",
-    category: "Obra Civil",
-  },
-  {
-    id: 5,
-    image:
-      "https://cdn.pixabay.com/photo/2021/10/18/17/56/workers-6721726_1280.jpg",
-    title: "Planta de Manufactura",
-    description:
-      "Instalación de líneas de producción y sistemas de fuerza para maquinaria pesada. Nuestro equipo técnico colaboró estrechamente con los ingenieros de planta para realizar las conexiones y pruebas de arranque. Se instalaron sistemas de protección contra sobretensiones y respaldo de energía UPS. La capacitación al personal de mantenimiento del cliente fue parte integral de nuestra entrega.",
-    category: "Industrial",
-  },
-  {
-    id: 6,
-    image:
-      "https://cdn.pixabay.com/photo/2022/06/02/15/52/construction-site-7238371_1280.jpg",
-    title: "Desarrollo Residencial Vertical",
-    description:
-      "Consultoría y ejecución de instalaciones hidrosanitarias y eléctricas para edificio residencial de 15 niveles. Se implementaron sistemas de presión constante y calentamiento solar centralizado. El diseño eficiente permitió reducir el consumo energético proyectado en un 15%. La entrega incluyó planos as-built detallados y manuales de operación para la administración del condominio.",
-    category: "Residencial",
-  },
-];
-
-const ProjectGallery = () => {
+const ProjectGallery = ({ projects = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 

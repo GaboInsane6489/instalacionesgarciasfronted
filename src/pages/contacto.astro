@@ -1,0 +1,193 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+
+// Assets
+import heroBg from "../assets/images/ConstructionManager.jpg";
+import formBg from "../assets/images/Plannig.jpg";
+---
+
+<Layout title="Contacto - Instalaciones García's">
+  <!-- Hero Section -->
+  <section class="relative py-32 bg-primary overflow-hidden">
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-primary z-10"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-cover bg-center opacity-40"
+      style={`background-image: url('${heroBg.src}');`}
+    >
+    </div>
+
+    <div class="container mx-auto px-6 relative z-20 text-center">
+      <h1
+        class="text-4xl md:text-6xl font-bold text-white mb-6 animate-mask-reveal"
+      >
+        Hablemos de su Proyecto
+      </h1>
+      <p
+        class="text-xl text-text-muted max-w-2xl mx-auto animate-mask-reveal-delay"
+      >
+        Estamos listos para brindar la solución técnica que su empresa necesita.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Content -->
+  <section class="py-24 bg-primary relative">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <!-- Contact Info -->
+        <div class="space-y-12">
+          <div>
+            <h2 class="text-3xl font-bold text-white mb-6">
+              Información de Contacto
+            </h2>
+            <p class="text-gray-400 leading-relaxed mb-8">
+              Visítenos en nuestras oficinas corporativas o contáctenos por los
+              medios digitales. Nuestro equipo de ingeniería está disponible
+              para asesorarle.
+            </p>
+          </div>
+
+          <div class="space-y-8">
+            <div class="flex items-start gap-6 group">
+              <div
+                class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors border border-white/10"
+              >
+                <MapPin className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white mb-2">Ubicación</h3>
+                <p class="text-gray-400">
+                  Av. Tecnológico 2405, Piso 8<br />
+                  Torre Empresarial, CDMX<br />
+                  CP 11560
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-6 group">
+              <div
+                class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors border border-white/10"
+              >
+                <Phone className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white mb-2">Teléfono</h3>
+                <p class="text-gray-400">
+                  +52 (55) 8900-1234<br />
+                  +52 (55) 8900-5678
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-6 group">
+              <div
+                class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors border border-white/10"
+              >
+                <Mail className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white mb-2">Email</h3>
+                <p class="text-gray-400">
+                  proyectos@instalacionesgarcias.com<br />
+                  ventas@instalacionesgarcias.com
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-6 group">
+              <div
+                class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors border border-white/10"
+              >
+                <Clock className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white mb-2">Horario</h3>
+                <p class="text-gray-400">
+                  Lunes - Viernes: 8:00 AM - 6:00 PM<br />
+                  Sábado: 9:00 AM - 1:00 PM
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="relative rounded-3xl overflow-hidden p-8 md:p-12">
+          <!-- Background Image with Blur -->
+          <div class="absolute inset-0 z-0">
+            <img
+              src={formBg.src}
+              alt="Background"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+          </div>
+
+          <div class="relative z-10">
+            <h3 class="text-2xl font-bold text-white mb-8">
+              Envíenos un Mensaje
+            </h3>
+            <form class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                  <label class="text-sm font-medium text-gray-300">Nombre</label
+                  >
+                  <input
+                    type="text"
+                    class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"
+                    placeholder="Juan Pérez"
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label class="text-sm font-medium text-gray-300"
+                    >Empresa</label
+                  >
+                  <input
+                    type="text"
+                    class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"
+                    placeholder="Empresa S.A."
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label class="text-sm font-medium text-gray-300">Email</label>
+                <input
+                  type="email"
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"
+                  placeholder="juan@empresa.com"
+                />
+              </div>
+
+              <div class="space-y-2">
+                <label class="text-sm font-medium text-gray-300">Mensaje</label>
+                <textarea
+                  rows="4"
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 transition-colors"
+                  placeholder="Describa su proyecto..."></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2"
+              >
+                Enviar Mensaje <Send size={18} />
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section (Placeholder) -->
+  <section class="h-[400px] w-full bg-gray-900 relative">
+    <div class="absolute inset-0 flex items-center justify-center">
+      <p class="text-gray-500">Mapa Interactivo (Google Maps Integration)</p>
+    </div>
+  </section>
+</Layout>
