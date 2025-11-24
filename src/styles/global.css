@@ -1,33 +1,35 @@
-@import "tailwindcss";
-
-@theme {
-  /* Colors */
-  --color-primary: #050505;
-  --color-secondary: #1a1a1a;
-  --color-accent: #ffffff;
-  --color-text-main: #ededed;
-  --color-text-muted: #a1a1a1;
-
-  /* Enterprise Typography Scale - Refined/Smaller */
-  --text-xs: 11px;
-  --text-xs--line-height: 14px;
-  --text-sm: 12px;
-  --text-sm--line-height: 18px;
-  --text-base: 13px; /* Reduced from 14px */
-  --text-base--line-height: 20px;
-  --text-lg: 15px; /* Reduced from 16px */
-  --text-lg--line-height: 22px;
-  --text-xl: 17px; /* Reduced from 18px */
-  --text-xl--line-height: 26px;
-  --text-2xl: 19px; /* Reduced from 20px */
-  --text-2xl--line-height: 26px;
-  --text-3xl: 22px; /* Reduced from 24px */
-  --text-3xl--line-height: 30px;
-  --text-4xl: 28px; /* Reduced from 30px */
-  --text-4xl--line-height: 34px;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
+  :root {
+    /* Colors */
+    --color-primary: #050505;
+    --color-secondary: #1a1a1a;
+    --color-accent: #ffffff;
+    --color-text-main: #ededed;
+    --color-text-muted: #a1a1a1;
+
+    /* Enterprise Typography Scale - Refined/Smaller */
+    --text-xs: 11px;
+    --text-xs--line-height: 14px;
+    --text-sm: 12px;
+    --text-sm--line-height: 18px;
+    --text-base: 13px;
+    --text-base--line-height: 20px;
+    --text-lg: 15px;
+    --text-lg--line-height: 22px;
+    --text-xl: 17px;
+    --text-xl--line-height: 26px;
+    --text-2xl: 19px;
+    --text-2xl--line-height: 26px;
+    --text-3xl: 22px;
+    --text-3xl--line-height: 30px;
+    --text-4xl: 28px;
+    --text-4xl--line-height: 34px;
+  }
+
   html {
     font-family: "Inter", system-ui, sans-serif;
     scroll-behavior: smooth;
