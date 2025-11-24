@@ -1,21 +1,15 @@
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://instalacionesgarciasfronted.vercel.app",
-  integrations: [
-    react(),
-    sitemap(),
-    tailwind({
-      applyBaseStyles: false, // We use our own global.css
-    }),
-  ],
+  integrations: [react(), sitemap()],
 
   vite: {
-    plugins: [],
+    plugins: [tailwindcss()],
     build: {
       // Enable minification
       minify: "terser",
@@ -37,13 +31,7 @@ export default defineConfig({
         },
       },
       chunkSizeWarningLimit: 500,
-      // Ensure CSS is properly processed
       cssCodeSplit: true,
-    },
-    css: {
-      postcss: {
-        plugins: [],
-      },
     },
   },
 });

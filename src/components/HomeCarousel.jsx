@@ -92,9 +92,10 @@ const HomeCarousel = () => {
                 />
 
                 {/* Preload next image hiddenly */}
-                <div className="hidden">
+                <div className="hidden" aria-hidden="true">
                   <img
                     src={projects[(currentIndex + 1) % projects.length]?.image}
+                    alt=""
                   />
                 </div>
 

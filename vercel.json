@@ -38,24 +38,11 @@
       ]
     },
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Accept-Encoding",
-          "value": "br, gzip, deflate"
-        }
-      ]
-    },
-    {
       "source": "/(.*)\\.(js|css|json)",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
-        },
-        {
-          "key": "Content-Encoding",
-          "value": "br"
         }
       ]
     },

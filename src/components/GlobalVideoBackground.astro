@@ -54,8 +54,8 @@ const { videoUrl, mobileImage } = Astro.props;
             videoElement.src = videoElement.dataset.src || '';
             videoElement.load();
             
-            // Auto-play after loading
-            videoElement.play().catch(e => console.log('Autoplay prevented:', e));
+            // Auto-play after loading (silent fail if prevented)
+            videoElement.play().catch(() => {});
           }
           
           observer.unobserve(videoElement);
