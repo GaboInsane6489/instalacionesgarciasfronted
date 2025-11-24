@@ -56,11 +56,13 @@ const ProjectCalculator = () => {
       });
 
       setStep(2);
+      setStep(2);
     } catch (error) {
       console.error("Error calculating:", error);
-      alert(
-        "Hubo un error al realizar el cálculo. Por favor intente nuevamente.",
-      );
+      const errorMessage =
+        error.response?.data?.error ||
+        "Hubo un error al realizar el cálculo. Verifique su conexión e intente nuevamente.";
+      alert(errorMessage);
     } finally {
       setLoading(false);
     }

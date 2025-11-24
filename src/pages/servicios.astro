@@ -1,18 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ServiceCard from "../components/ServiceCard.astro";
-import {
-  Zap,
-  Wrench,
-  Building2,
-  Hammer,
-  Paintbrush,
-  Lightbulb,
-  Shield,
-  CheckCircle2,
-} from "lucide-react";
+import { Shield, CheckCircle2 } from "lucide-react";
 import ProjectGallery from "../components/ProjectGallery.jsx";
 import ProjectCalculator from "../components/ProjectCalculator.jsx";
+import ServicesGrid from "../components/ServicesGrid.jsx";
 
 // Assets
 import heroBg from "../assets/images/Construction6.webp";
@@ -23,37 +15,37 @@ const services = [
     title: "Instalaciones Eléctricas",
     description:
       "Diseño, ejecución y mantenimiento de sistemas eléctricos de media y baja tensión. Cumplimiento estricto de la NOM-001-SEDE.",
-    icon: Zap,
+    icon: "Zap",
   },
   {
     title: "Mantenimiento Industrial",
     description:
       "Programas preventivos y correctivos para maquinaria, tableros de control y subestaciones. Minimizamos tiempos de inactividad.",
-    icon: Wrench,
+    icon: "Wrench",
   },
   {
     title: "Obra Civil e Institucional",
     description:
       "Construcción y remodelación de espacios corporativos, naves industriales y edificios públicos con acabados de alta calidad.",
-    icon: Building2,
+    icon: "Building2",
   },
   {
     title: "Sistemas de Drywall",
     description:
       "Instalación experta de muros divisorios, plafones y detalles arquitectónicos con sistemas ligeros y acústicos.",
-    icon: Hammer,
+    icon: "Hammer",
   },
   {
     title: "Acabados y Pintura",
     description:
       "Aplicación de recubrimientos industriales, epóxicos y pintura vinílica para interiores y exteriores.",
-    icon: Paintbrush,
+    icon: "Paintbrush",
   },
   {
     title: "Consultoría Energética",
     description:
       "Auditorías de calidad de energía, corrección de factor de potencia y estudios de ahorro energético.",
-    icon: Lightbulb,
+    icon: "Lightbulb",
   },
 ];
 ---
@@ -62,11 +54,11 @@ const services = [
   <!-- Hero Section -->
   <section class="relative py-32 bg-primary overflow-hidden">
     <div
-      class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-primary z-10"
+      class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-primary z-10"
     >
     </div>
     <div
-      class="absolute inset-0 bg-cover bg-center opacity-30"
+      class="absolute inset-0 bg-cover bg-center"
       style={`background-image: url('${heroBg.src}');`}
     >
     </div>
@@ -89,95 +81,103 @@ const services = [
   <!-- Services Grid -->
   <section class="py-16 bg-primary relative">
     <div class="container mx-auto px-6">
-      <div
-        id="spotlight-container"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 spotlight-group"
-        style="--mouse-x: 0px; --mouse-y: 0px;"
-      >
-        {
-          services.map((service, index) => (
-            <ServiceCard
-              title={service.title}
-              description={service.description}
-              Icon={service.icon}
-              index={index}
-            />
-          ))
-        }
-      </div>
+      <ServicesGrid client:visible services={services} />
     </div>
   </section>
 
   <!-- Project Gallery Carousel -->
   <ProjectGallery client:visible />
 
-  <!-- Interactive Project Calculator -->
-  <ProjectCalculator client:visible />
-
-  <!-- Why Choose Us - Mini Section -->
-  <section class="py-20 bg-secondary border-y border-white/5">
-    <div class="container mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div class="text-center md:text-left">
-          <h2 class="text-3xl font-bold text-white mb-6">
-            Garantía de Excelencia
-          </h2>
-          <p class="text-text-muted mb-8 leading-relaxed">
-            Cada proyecto es supervisado por ingenieros certificados y ejecutado
-            por personal técnico altamente capacitado. Nos comprometemos con los
-            tiempos de entrega y la transparencia presupuestal.
-          </p>
-          <ul class="space-y-4">
-            <li
-              class="flex items-center gap-3 text-gray-300 justify-center md:justify-start"
-            >
-              <CheckCircle2 className="w-5 h-5 text-white" />
-              <span>Certificación NOM-001-SEDE</span>
-            </li>
-            <li
-              class="flex items-center gap-3 text-gray-300 justify-center md:justify-start"
-            >
-              <CheckCircle2 className="w-5 h-5 text-white" />
-              <span>Personal asegurado (IMSS/REPSE)</span>
-            </li>
-            <li
-              class="flex items-center gap-3 text-gray-300 justify-center md:justify-start"
-            >
-              <CheckCircle2 className="w-5 h-5 text-white" />
-              <span>Garantía por escrito en cada obra</span>
-            </li>
-          </ul>
-        </div>
-        <div class="relative h-[400px] rounded-2xl overflow-hidden group">
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"
-          >
-          </div>
-          <img
-            src={whyUsImage.src}
-            alt="Ingenieros trabajando"
-            loading="lazy"
-            class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-          />
-          <div class="absolute bottom-8 left-8 z-20">
-            <div class="flex items-center gap-2 mb-2">
-              <Shield className="w-6 h-6 text-white" />
-              <span
-                class="text-white font-bold uppercase tracking-wider text-sm"
-                >Seguridad Primero</span
-              >
-            </div>
-            <p class="text-gray-300 text-sm">
-              Protocolos estrictos de seguridad industrial.
-            </p>
-          </div>
-        </div>
-      </div>
+  <!-- Fixed Video Background Section -->
+  <div class="relative">
+    {/* Fixed Video Background */}
+    <div class="sticky top-0 h-screen w-full overflow-hidden -z-10">
+      <div class="absolute inset-0 bg-black/60 z-10"></div>
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        class="w-full h-full object-cover"
+      >
+        <source src="https://cdn.pixabay.com/video/2020/05/27/40301-425442320_large.mp4" type="video/mp4" />
+      </video>
     </div>
-  </section>
+
+    <div class="relative z-10 bg-transparent">
+       <!-- Interactive Project Calculator -->
+       <div class="py-24">
+         <ProjectCalculator client:visible />
+       </div>
+
+       <!-- Why Choose Us - Mini Section -->
+       <section class="py-24">
+        <div class="container mx-auto px-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="text-center md:text-left bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10">
+              <h2 class="text-3xl font-bold text-white mb-6">
+                Garantía de Excelencia
+              </h2>
+              <p class="text-gray-300 mb-8 leading-relaxed">
+                Cada proyecto es supervisado por ingenieros certificados y ejecutado
+                por personal técnico altamente capacitado. Nos comprometemos con los
+                tiempos de entrega y la transparencia presupuestal.
+              </p>
+              <ul class="space-y-4">
+                <li
+                  class="flex items-center gap-3 text-gray-300 justify-center md:justify-start"
+                >
+                  <CheckCircle2 className="w-5 h-5 text-white" />
+                  <span>Certificación NOM-001-SEDE</span>
+                </li>
+                <li
+                  class="flex items-center gap-3 text-gray-300 justify-center md:justify-start"
+                >
+                  <CheckCircle2 className="w-5 h-5 text-white" />
+                  <span>Personal asegurado (IMSS/REPSE)</span>
+                </li>
+                <li
+                  class="flex items-center gap-3 text-gray-300 justify-center md:justify-start"
+                >
+                  <CheckCircle2 className="w-5 h-5 text-white" />
+                  <span>Garantía por escrito en cada obra</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="relative h-[400px] rounded-2xl overflow-hidden group shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"
+              >
+              </div>
+              <img
+                src={whyUsImage.src}
+                alt="Ingenieros trabajando"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+              />
+              <div class="absolute bottom-8 left-0 w-full z-20 flex flex-col items-center text-center">
+                <div class="flex items-center gap-2 mb-2">
+                  <Shield className="w-8 h-8 text-white" />
+                </div>
+                <span
+                    class="text-white font-bold uppercase tracking-wider text-sm mb-1"
+                    >Seguridad Primero</span
+                  >
+                <p class="text-gray-300 text-sm">
+                  Protocolos estrictos de seguridad industrial.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
 
   <!-- CTA -->
-  <section class="py-24 bg-primary text-center">
+  <section class="py-24 bg-primary text-center relative z-20">
     <div class="container mx-auto px-6">
       <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">
         ¿Tiene un proyecto en mente?

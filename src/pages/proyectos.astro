@@ -60,7 +60,7 @@ const projects = [
 <Layout title="Proyectos - Instalaciones García's">
   <!-- Hero Section -->
   <VideoHero
-    videoUrl="https://cdn.pixabay.com/video/2024/07/02/219134_large.mp4"
+    videoUrl="https://cdn.pixabay.com/video/2024/07/02/219134_small.mp4"
     mobileImage={img1.src}
     title="Nuestra Huella"
     subtitle="Construyendo el futuro con ingeniería de precisión y pasión por la excelencia."
@@ -69,19 +69,7 @@ const projects = [
   <!-- Featured Section 1: Infraestructura -->
   <section class="relative py-32 overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <video
-        class="w-full h-full object-cover"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="none"
-      >
-        <source
-          src="https://cdn.pixabay.com/video/2020/06/08/41501-429661287_large.mp4"
-          type="video/mp4"
-        />
-      </video>
+      <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${img2.src}');`}></div>
       <div class="absolute inset-0 bg-black/70"></div>
     </div>
 
@@ -167,19 +155,7 @@ const projects = [
   <!-- Featured Section 2: Energía -->
   <section class="relative py-32 overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <video
-        class="w-full h-full object-cover"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="none"
-      >
-        <source
-          src="https://cdn.pixabay.com/video/2017/07/23/10877-226635355_large.mp4"
-          type="video/mp4"
-        />
-      </video>
+      <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${img5.src}');`}></div>
       <div class="absolute inset-0 bg-black/70"></div>
     </div>
 
@@ -261,7 +237,7 @@ const projects = [
         preload="none"
       >
         <source
-          src="https://cdn.pixabay.com/video/2020/06/01/40813-426920959_large.mp4"
+          src="https://cdn.pixabay.com/video/2020/06/01/40813-426920959_small.mp4"
           type="video/mp4"
         />
       </video>

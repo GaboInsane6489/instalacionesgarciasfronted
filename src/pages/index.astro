@@ -3,9 +3,12 @@
 // IMPORTS - Componentes y utilidades necesarias
 // ============================================
 import Layout from "../layouts/Layout.astro";
-import VideoHero from "../components/VideoHero.astro";
+// VideoHero import removed
 import ServiceCard from "../components/ServiceCard.astro";
 import SolutionsGuide from "../components/SolutionsGuide.jsx";
+import HomeCarousel from "../components/HomeCarousel.jsx";
+import ImmersiveWrapper from "../components/ImmersiveWrapper.astro";
+import FAQ from "../components/FAQ.jsx";
 import {
   Zap,
   Wrench,
@@ -17,6 +20,7 @@ import {
   CheckCircle2,
   MessageSquare,
   Star,
+  ArrowRight,
 } from "lucide-react";
 
 // Assets
@@ -28,38 +32,68 @@ import mobileImage from "../assets/images/Construction1.webp";
   <!-- ============================================ -->
   <!-- HERO SECTION - Video de fondo con CTA principal -->
   <!-- ============================================ -->
-  <VideoHero videoUrl={videoLanding} mobileImage={mobileImage.src}>
-    <div class="overflow-hidden mb-8">
-      <h1
-        class="text-5xl md:text-7xl font-bold text-white tracking-tight animate-mask-reveal"
-      >
-        Instalaciones García c.a
-      </h1>
-    </div>
-    <div class="overflow-hidden mb-10">
-      <p
-        class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto animate-mask-reveal-delay"
-      >
-        Soluciones eléctricas y proyectos institucionales con estándares de
-        excelencia.
-      </p>
-    </div>
-
-    <a
-      href="/servicios"
-      class="inline-block px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)] animate-fade-in-up"
+  <!-- ============================================ -->
+  <!-- FIXED VIDEO BACKGROUND -->
+  <!-- ============================================ -->
+  <div class="fixed inset-0 w-full h-full -z-50 pointer-events-none">
+    <div class="absolute inset-0 bg-black/30 z-10"></div> <!-- Slight dark overlay -->
+    <video
+      autoplay
+      loop
+      muted
+      playsinline
+      class="w-full h-full object-cover"
     >
-      Explorar Servicios
-    </a>
-  </VideoHero>
+      <source src={videoLanding} type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- HERO SECTION - CTA principal -->
+  <!-- ============================================ -->
+  <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <div class="container mx-auto px-6 relative z-20 text-center">
+      <div class="overflow-hidden mb-8">
+        <h1
+          class="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/50 tracking-tight animate-mask-reveal"
+        >
+          Instalaciones García c.a
+        </h1>
+      </div>
+      <div class="overflow-hidden mb-10">
+        <p
+          class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto animate-mask-reveal-delay font-light"
+        >
+          Soluciones eléctricas y proyectos institucionales con estándares de
+          <span class="text-white font-semibold">excelencia</span>.
+        </p>
+      </div>
+
+      <div class="flex flex-col items-center gap-8">
+        <a
+          href="/servicios"
+          class="inline-block px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.3)] animate-fade-in-up"
+        >
+          Explorar Servicios
+        </a>
+        
+        <!-- Scroll Indicator -->
+        <div class="animate-bounce mt-8 opacity-0 animate-fade-in-up" style="animation-delay: 1s;">
+          <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1">
+            <div class="w-1 h-2 bg-white rounded-full animate-scroll-down"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ============================================ -->
   <!-- SERVICES SECTION - Grid de servicios principales -->
   <!-- ============================================ -->
-  <section class="py-24 bg-primary relative overflow-hidden z-10">
+  <section class="py-24 relative overflow-hidden z-10">
     <!-- Decoración de fondo -->
     <div
-      class="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent pointer-events-none"
+      class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-transparent pointer-events-none"
     >
     </div>
 
@@ -107,6 +141,96 @@ import mobileImage from "../assets/images/Construction1.webp";
   <SolutionsGuide client:visible />
 
   <!-- ============================================ -->
+  <!-- NEW HOME CAROUSEL - Galería destacada -->
+  <!-- ============================================ -->
+  <HomeCarousel client:visible />
+
+  <!-- ============================================ -->
+  <!-- IMMERSIVE SECTIONS - Video compartido -->
+  <!-- ============================================ -->
+  <ImmersiveWrapper videoUrl="https://cdn.pixabay.com/video/2025/03/23/266956_large.mp4">
+    <!-- Section 1: Innovation -->
+    <section class="min-h-screen flex items-center justify-center py-24">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div class="fade-in-section">
+            <h2 class="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight tracking-tighter">
+              Built for<br />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 animate-pulse">Productivity</span><br />
+              and Beyond.
+            </h2>
+            <p class="text-xl text-gray-300 max-w-lg leading-relaxed mb-10">
+              Redefinimos los estándares de la construcción industrial con tecnología de punta y procesos optimizados que garantizan resultados superiores.
+            </p>
+            <a href="/servicios" class="inline-flex items-center gap-2 text-white font-bold border-b border-white pb-1 hover:text-blue-400 hover:border-blue-400 transition-all group">
+              Descubrir Innovación <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+            </a>
+          </div>
+          <div class="hidden lg:block relative fade-in-section" style="transition-delay: 200ms;">
+            <!-- Decorative Element -->
+            <div class="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-3xl rounded-full animate-pulse"></div>
+            <div class="relative bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors duration-500">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+                  <Zap className="w-6 h-6 text-blue-400" />
+                </div>
+                <div>
+                  <h3 class="text-white font-bold text-lg">Eficiencia Energética</h3>
+                  <p class="text-gray-400 text-sm">Ahorro garantizado</p>
+                </div>
+              </div>
+              <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full w-[85%] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full relative overflow-hidden">
+                    <div class="absolute inset-0 bg-white/20 animate-shine"></div>
+                </div>
+              </div>
+              <div class="mt-4 flex justify-between text-sm text-gray-400">
+                <span>Rendimiento</span>
+                <span class="text-white font-bold counter-value" data-target="98">0</span>%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Future Vision -->
+    <section class="min-h-screen flex items-center justify-center py-24">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center fade-in-section">
+          <span class="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 text-xs font-bold tracking-wider text-white mb-8 backdrop-blur-md">
+            VISIÓN 2030
+          </span>
+          <h2 class="text-5xl md:text-8xl font-bold text-white mb-10 tracking-tighter">
+            Engineering<br />the Future
+          </h2>
+          <p class="text-2xl text-gray-300 font-light leading-relaxed mb-12">
+            Construimos hoy las infraestructuras que impulsarán el mañana. Sostenibilidad, seguridad y diseño en perfecta armonía.
+          </p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            <div class="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 hover:bg-white/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] group">
+              <Shield className="w-10 h-10 text-white mb-6 group-hover:text-blue-400 transition-colors" />
+              <h3 class="text-xl font-bold text-white mb-2">Seguridad Total</h3>
+              <p class="text-gray-400 text-sm">Protocolos avanzados que protegen su inversión y su equipo.</p>
+            </div>
+            <div class="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 hover:bg-white/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] group">
+              <Building2 className="w-10 h-10 text-white mb-6 group-hover:text-purple-400 transition-colors" />
+              <h3 class="text-xl font-bold text-white mb-2">Diseño Modular</h3>
+              <p class="text-gray-400 text-sm">Espacios adaptables que crecen junto con su empresa.</p>
+            </div>
+            <div class="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 hover:bg-white/5 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] group">
+              <Award className="w-10 h-10 text-white mb-6 group-hover:text-pink-400 transition-colors" />
+              <h3 class="text-xl font-bold text-white mb-2">Certificación</h3>
+              <p class="text-gray-400 text-sm">Cumplimiento de estándares internacionales de calidad.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ImmersiveWrapper>
+
+  <!-- ============================================ -->
   <!-- PROCESS SECTION - Nuestro proceso de trabajo -->
   <!-- ============================================ -->
   <section
@@ -118,7 +242,7 @@ import mobileImage from "../assets/images/Construction1.webp";
     </div>
 
     <div class="container mx-auto px-6 relative z-10">
-      <div class="text-center mb-16 fade-in-section">
+      <div class="text-center mb-20 fade-in-section">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
           Nuestro Proceso
         </h2>
@@ -128,63 +252,68 @@ import mobileImage from "../assets/images/Construction1.webp";
         </p>
       </div>
 
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 fade-in-section"
-      >
-        <!-- Step 1 -->
-        <div class="text-center group">
-          <div
-            class="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center border-2 border-white/10 group-hover:border-white/30 transition-all duration-300 group-hover:scale-110"
-          >
-            <span class="text-2xl font-bold text-white">1</span>
+      <div class="relative">
+        <!-- Connecting Line (Desktop) -->
+        <div class="hidden md:block absolute top-8 left-0 w-full h-0.5 bg-white/10"></div>
+        
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 fade-in-section"
+        >
+          <!-- Step 1 -->
+          <div class="text-center group relative">
+            <div
+              class="w-16 h-16 mx-auto mb-6 bg-primary rounded-full flex items-center justify-center border-2 border-white/10 group-hover:border-white group-hover:bg-white group-hover:text-black transition-all duration-500 relative z-10 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]"
+            >
+              <span class="text-2xl font-bold">1</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Consulta Inicial</h3>
+            <p class="text-text-muted text-sm leading-relaxed">
+              Evaluamos sus necesidades y objetivos para diseñar la solución
+              perfecta.
+            </p>
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">Consulta Inicial</h3>
-          <p class="text-text-muted text-sm">
-            Evaluamos sus necesidades y objetivos para diseñar la solución
-            perfecta.
-          </p>
-        </div>
 
-        <!-- Step 2 -->
-        <div class="text-center group">
-          <div
-            class="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center border-2 border-white/10 group-hover:border-white/30 transition-all duration-300 group-hover:scale-110"
-          >
-            <span class="text-2xl font-bold text-white">2</span>
+          <!-- Step 2 -->
+          <div class="text-center group relative">
+            <div
+              class="w-16 h-16 mx-auto mb-6 bg-primary rounded-full flex items-center justify-center border-2 border-white/10 group-hover:border-white group-hover:bg-white group-hover:text-black transition-all duration-500 relative z-10 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]"
+            >
+              <span class="text-2xl font-bold">2</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Planificación</h3>
+            <p class="text-text-muted text-sm leading-relaxed">
+              Desarrollamos un plan detallado con cronogramas y presupuestos
+              claros.
+            </p>
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">Planificación</h3>
-          <p class="text-text-muted text-sm">
-            Desarrollamos un plan detallado con cronogramas y presupuestos
-            claros.
-          </p>
-        </div>
 
-        <!-- Step 3 -->
-        <div class="text-center group">
-          <div
-            class="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center border-2 border-white/10 group-hover:border-white/30 transition-all duration-300 group-hover:scale-110"
-          >
-            <span class="text-2xl font-bold text-white">3</span>
+          <!-- Step 3 -->
+          <div class="text-center group relative">
+            <div
+              class="w-16 h-16 mx-auto mb-6 bg-primary rounded-full flex items-center justify-center border-2 border-white/10 group-hover:border-white group-hover:bg-white group-hover:text-black transition-all duration-500 relative z-10 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]"
+            >
+              <span class="text-2xl font-bold">3</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">Ejecución</h3>
+            <p class="text-text-muted text-sm leading-relaxed">
+              Implementamos el proyecto con precisión y cumplimiento de
+              estándares.
+            </p>
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">Ejecución</h3>
-          <p class="text-text-muted text-sm">
-            Implementamos el proyecto con precisión y cumplimiento de
-            estándares.
-          </p>
-        </div>
 
-        <!-- Step 4 -->
-        <div class="text-center group">
-          <div
-            class="w-16 h-16 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center border-2 border-white/10 group-hover:border-white/30 transition-all duration-300 group-hover:scale-110"
-          >
-            <span class="text-2xl font-bold text-white">4</span>
+          <!-- Step 4 -->
+          <div class="text-center group relative">
+            <div
+              class="w-16 h-16 mx-auto mb-6 bg-primary rounded-full flex items-center justify-center border-2 border-white/10 group-hover:border-white group-hover:bg-white group-hover:text-black transition-all duration-500 relative z-10 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]"
+            >
+              <span class="text-2xl font-bold">4</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2 group-hover:text-green-400 transition-colors">Seguimiento</h3>
+            <p class="text-text-muted text-sm leading-relaxed">
+              Brindamos soporte continuo y mantenimiento para asegurar el éxito a
+              largo plazo.
+            </p>
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">Seguimiento</h3>
-          <p class="text-text-muted text-sm">
-            Brindamos soporte continuo y mantenimiento para asegurar el éxito a
-            largo plazo.
-          </p>
         </div>
       </div>
     </div>
@@ -463,110 +592,10 @@ import mobileImage from "../assets/images/Construction1.webp";
   <!-- ============================================ -->
   <!-- FAQ SECTION - Preguntas frecuentes -->
   <!-- ============================================ -->
-  <section
-    class="py-24 bg-secondary border-t border-white/5 relative overflow-hidden"
-  >
-    <div class="container mx-auto px-6 max-w-4xl">
-      <div class="text-center mb-16 fade-in-section">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-          Preguntas Frecuentes
-        </h2>
-        <p class="text-text-muted max-w-xl mx-auto">
-          Respuestas a las consultas más comunes sobre nuestros servicios.
-        </p>
-      </div>
-
-      <div class="space-y-6 fade-in-section">
-        <!-- FAQ 1 -->
-        <div
-          class="bg-primary/50 p-6 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
-        >
-          <div class="flex items-start">
-            <CheckCircle2
-              className="w-6 h-6 text-white mr-4 flex-shrink-0 mt-1"
-            />
-            <div>
-              <h3 class="text-lg font-bold text-white mb-2">
-                ¿Qué tipo de proyectos realizan?
-              </h3>
-              <p class="text-text-muted text-sm">
-                Realizamos instalaciones eléctricas industriales y comerciales,
-                mantenimiento preventivo y correctivo, proyectos institucionales
-                para el sector público y privado, y consultoría técnica
-                especializada.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- FAQ 2 -->
-        <div
-          class="bg-primary/50 p-6 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
-        >
-          <div class="flex items-start">
-            <CheckCircle2
-              className="w-6 h-6 text-white mr-4 flex-shrink-0 mt-1"
-            />
-            <div>
-              <h3 class="text-lg font-bold text-white mb-2">
-                ¿Cuentan con certificaciones?
-              </h3>
-              <p class="text-text-muted text-sm">
-                Sí, nuestro equipo cuenta con certificaciones vigentes en
-                instalaciones eléctricas, seguridad industrial y normativas
-                nacionales e internacionales. Todos nuestros proyectos cumplen
-                con los estándares de calidad más exigentes.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- FAQ 3 -->
-        <div
-          class="bg-primary/50 p-6 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
-        >
-          <div class="flex items-start">
-            <CheckCircle2
-              className="w-6 h-6 text-white mr-4 flex-shrink-0 mt-1"
-            />
-            <div>
-              <h3 class="text-lg font-bold text-white mb-2">
-                ¿Ofrecen garantía en sus trabajos?
-              </h3>
-              <p class="text-text-muted text-sm">
-                Absolutamente. Todos nuestros proyectos incluyen garantía de
-                mano de obra y materiales. El período de garantía varía según el
-                tipo de proyecto, pero siempre aseguramos la calidad y
-                durabilidad de nuestro trabajo.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- FAQ 4 -->
-        <div
-          class="bg-primary/50 p-6 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
-        >
-          <div class="flex items-start">
-            <CheckCircle2
-              className="w-6 h-6 text-white mr-4 flex-shrink-0 mt-1"
-            />
-            <div>
-              <h3 class="text-lg font-bold text-white mb-2">
-                ¿Cómo puedo solicitar una cotización?
-              </h3>
-              <p class="text-text-muted text-sm">
-                Puede contactarnos a través de nuestro formulario de contacto,
-                por teléfono o correo electrónico. Evaluaremos sus necesidades y
-                le proporcionaremos una cotización detallada sin compromiso en
-                un plazo de 24-48 horas.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ============================================ -->
+  <!-- FAQ SECTION - Preguntas frecuentes -->
+  <!-- ============================================ -->
+  <FAQ client:visible />
 
   <!-- ============================================ -->
   <!-- CTA SECTION - Llamada a la acción final -->

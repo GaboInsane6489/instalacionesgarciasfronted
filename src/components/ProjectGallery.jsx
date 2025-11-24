@@ -24,7 +24,7 @@ const ProjectGallery = ({ projects: initialProjects = [] }) => {
 
       fetchProjects();
     }
-  }, [initialProjects]);
+  }, []); // Empty dependency array to run only once on mount
 
   // Auto-play logic
   useEffect(() => {

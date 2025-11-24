@@ -10,9 +10,12 @@ import {
   Linkedin,
   Instagram,
   ArrowRight,
+  Menu,
+  X,
 } from "lucide-react";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import Analytics from "@vercel/analytics/astro";
+import Footer from "../components/Footer.jsx";
 
 /**
  * Layout Component
@@ -39,9 +42,11 @@ const { title = "Instalaciones García's" } = Astro.props;
     />
     <meta
       name="keywords"
-      content="instalaciones eléctricas, mantenimiento industrial, proyectos institucionales, electricidad, construcción"
+      content="instalaciones eléctricas, mantenimiento industrial, proyectos institucionales, electricidad, construcción, ingeniería eléctrica, CDMX"
     />
     <meta name="author" content="Instalaciones García's" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={Astro.url} />
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
@@ -53,7 +58,7 @@ const { title = "Instalaciones García's" } = Astro.props;
     />
     <meta
       property="og:image"
-      content="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+      content="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
     />
 
     <!-- Twitter -->
@@ -66,7 +71,7 @@ const { title = "Instalaciones García's" } = Astro.props;
     />
     <meta
       property="twitter:image"
-      content="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+      content="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
     />
 
     <title>{title}</title>
@@ -118,7 +123,13 @@ const { title = "Instalaciones García's" } = Astro.props;
         </>
       )
     }
-    <!-- Navbar with Glassmorphism -->
+
+    <!-- Scroll Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1 z-[60] pointer-events-none">
+      <div id="scroll-progress" class="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 origin-left transform scale-x-0 transition-transform duration-100 ease-out shadow-[0_0_10px_rgba(168,85,247,0.5)]"></div>
+    </div>
+
+    <!-- Navbar with Premium Glassmorphism -->
     <header
       id="navbar"
       class="fixed top-0 w-full z-50 transition-all duration-500 border-b border-white/0"
@@ -130,32 +141,31 @@ const { title = "Instalaciones García's" } = Astro.props;
       </div>
 
       <nav
-        class="container mx-auto flex items-center justify-between py-4 px-4 md:px-6 relative z-10"
+        class="container mx-auto flex items-center justify-between py-4 px-6 relative z-50"
       >
         <!-- Logo / Brand -->
         <a
           href="/"
-          class="text-lg md:text-xl lg:text-2xl font-bold tracking-tighter text-white hover:text-gray-200 transition-colors duration-300 flex items-center gap-2"
+          class="text-lg md:text-xl lg:text-2xl font-bold tracking-tighter text-white hover:text-gray-200 transition-colors duration-300 flex items-center gap-3 group"
         >
           <div
-            class="w-8 h-8 bg-white text-black flex items-center justify-center rounded-lg font-black text-sm"
+            class="w-10 h-10 bg-white text-black flex items-center justify-center rounded-xl font-black text-sm shadow-[0_0_15px_rgba(255,255,255,0.3)] group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"
           >
             IG
           </div>
-          <span>Instalaciones <span class="font-light">García's</span></span>
+          <span class="hidden sm:inline-block group-hover:tracking-wide transition-all duration-300">Instalaciones <span class="font-light text-gray-300 group-hover:text-white">García's</span></span>
         </a>
 
         <!-- Desktop Navigation Links -->
-        <ul class="hidden md:flex gap-8 text-sm font-medium">
+        <ul class="hidden md:flex items-center gap-1 bg-white/5 backdrop-blur-md px-2 py-1.5 rounded-full border border-white/10 hover:border-white/20 transition-colors duration-300">
           {
             ["Inicio", "Servicios", "Proyectos", "Contacto"].map((item) => (
               <li>
                 <a
                   href={item === "Inicio" ? "/" : `/${item.toLowerCase()}`}
-                  class="text-gray-300 hover:text-white transition-colors duration-300 relative group py-2"
+                  class="px-5 py-2 rounded-full text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 block hover:shadow-[0_0_10px_rgba(255,255,255,0.1)]"
                 >
                   {item}
-                  <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full" />
                 </a>
               </li>
             ))
@@ -166,18 +176,12 @@ const { title = "Instalaciones García's" } = Astro.props;
         <div class="hidden md:block">
           <a
             href="/contacto"
-            class="relative px-6 py-2.5 group overflow-hidden rounded-full bg-white text-black font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] hover:scale-105"
+            class="relative px-6 py-2.5 group overflow-hidden rounded-full bg-white text-black font-bold text-xs uppercase tracking-wider transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] hover:scale-105 flex items-center gap-2"
           >
-            <span
-              class="relative z-10 group-hover:text-black transition-colors duration-300"
-              >Cotizar Ahora</span
-            >
+            <span class="relative z-10">Cotizar</span>
+            <ArrowRight size={14} className="relative z-10 group-hover:translate-x-1 transition-transform" />
             <div
               class="absolute inset-0 bg-gradient-to-r from-gray-100 via-white to-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            >
-            </div>
-            <div
-              class="absolute inset-0 bg-white opacity-0 group-hover:animate-shine"
             >
             </div>
           </a>
@@ -186,146 +190,38 @@ const { title = "Instalaciones García's" } = Astro.props;
         <!-- Mobile Menu Button -->
         <button
           id="mobile-menu-button"
-          class="md:hidden relative w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 flex items-center justify-center group overflow-hidden"
+          class="md:hidden relative w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 transition-all duration-300 flex items-center justify-center group z-50 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
           aria-label="Toggle mobile menu"
         >
-          <div
-            class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          >
-          </div>
-          <div class="relative w-5 h-4 flex flex-col justify-between">
-            <span
-              class="w-full h-0.5 bg-white rounded-full transform transition-all duration-300 origin-left group-hover:w-4"
-            ></span>
-            <span
-              class="w-full h-0.5 bg-white rounded-full transition-all duration-300 group-hover:w-3"
-            ></span>
-            <span
-              class="w-full h-0.5 bg-white rounded-full transform transition-all duration-300 origin-left group-hover:w-4"
-            ></span>
-          </div>
+          <Menu className="w-5 h-5 text-white transition-all duration-300 group-aria-expanded:opacity-0 group-aria-expanded:rotate-90 absolute" />
+          <X className="w-5 h-5 text-white transition-all duration-300 opacity-0 -rotate-90 group-aria-expanded:opacity-100 group-aria-expanded:rotate-0 absolute" />
         </button>
       </nav>
 
-      <!-- Mobile Menu -->
+      <!-- Mobile Menu Overlay -->
       <div
         id="mobile-menu"
-        class="md:hidden hidden bg-black/95 backdrop-blur-xl border-t border-white/10 absolute w-full h-screen"
+        class="fixed inset-0 bg-black/95 backdrop-blur-xl z-40 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500"
       >
-        <ul
-          class="flex flex-col items-center justify-center h-[80vh] space-y-8"
-        >
-          <li>
-            <a
-              href="/"
-              class="flex flex-col items-center gap-2 text-2xl text-gray-300 hover:text-white transition-colors duration-300 group"
-            >
-              <div
-                class="p-3 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-home w-6 h-6 group-hover:scale-110 transition-transform"
-                  ><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
-                  ></path><polyline points="9 22 9 12 15 12 15 22"
-                  ></polyline></svg
+        <!-- Background Decoration -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+           <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+           <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        </div>
+
+        <ul class="flex flex-col items-center gap-8 relative z-10">
+          {
+            ["Inicio", "Servicios", "Proyectos", "Contacto"].map((item, index) => (
+              <li class="transform translate-y-4 opacity-0 transition-all duration-500" style={`transition-delay: ${index * 100}ms`}>
+                <a
+                  href={item === "Inicio" ? "/" : `/${item.toLowerCase()}`}
+                  class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 hover:to-white transition-all duration-300 hover:scale-110 inline-block"
                 >
-              </div>
-              <span>Inicio</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="/servicios"
-              class="flex flex-col items-center gap-2 text-2xl text-gray-300 hover:text-white transition-colors duration-300 group"
-            >
-              <div
-                class="p-3 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-briefcase w-6 h-6 group-hover:scale-110 transition-transform"
-                  ><rect width="20" height="14" x="2" y="7" rx="2" ry="2"
-                  ></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"
-                  ></path></svg
-                >
-              </div>
-              <span>Servicios</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="/proyectos"
-              class="flex flex-col items-center gap-2 text-2xl text-gray-300 hover:text-white transition-colors duration-300 group"
-            >
-              <div
-                class="p-3 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-folder-git-2 w-6 h-6 group-hover:scale-110 transition-transform"
-                  ><path
-                    d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5"
-                  ></path><circle cx="13" cy="12" r="2"></circle><path
-                    d="M18 19c-2.8 0-5-2.2-5-5v8"></path><circle
-                    cx="20"
-                    cy="19"
-                    r="2"></circle></svg
-                >
-              </div>
-              <span>Proyectos</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="/contacto"
-              class="flex flex-col items-center gap-2 text-2xl text-gray-300 hover:text-white transition-colors duration-300 group"
-            >
-              <div
-                class="p-3 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-mail w-6 h-6 group-hover:scale-110 transition-transform"
-                  ><rect width="20" height="16" x="2" y="4" rx="2"></rect><path
-                    d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
-                >
-              </div>
-              <span>Contacto</span>
-            </a>
-          </li>
+                  {item}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </header>
@@ -335,316 +231,8 @@ const { title = "Instalaciones García's" } = Astro.props;
       <slot />
     </main>
 
-    <!-- Mega Footer with Brutalist Design & Phosphorescent Icons -->
-    <footer
-      class="bg-[#050505] border-t border-white/5 pt-24 pb-12 relative overflow-hidden spotlight-group"
-      style="--mouse-x: 0px; --mouse-y: 0px;"
-    >
-      <!-- Spotlight Overlay -->
-      <div
-        class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);"
-      >
-      </div>
-
-      <!-- Massive Typography Background -->
-      <div
-        class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-[0.03] select-none"
-      >
-        <span
-          class="text-[20vw] font-black text-white leading-none whitespace-nowrap absolute -top-10 left-0"
-        >
-          GARCÍA
-        </span>
-      </div>
-
-      <div class="container mx-auto px-6 relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
-          <!-- Brand Column (Span 4) -->
-          <div class="md:col-span-4 space-y-8 text-center md:text-left">
-            <a href="/" class="inline-block">
-              <div
-                class="flex items-center gap-3 group justify-center md:justify-start"
-              >
-                <div
-                  class="w-12 h-12 bg-white text-black flex items-center justify-center rounded-xl font-black text-xl group-hover:scale-110 transition-transform duration-300"
-                >
-                  IG
-                </div>
-                <div class="flex flex-col text-left">
-                  <span
-                    class="text-2xl font-bold text-white tracking-tight leading-none"
-                    >Instalaciones</span
-                  >
-                  <span
-                    class="text-2xl font-light text-gray-400 tracking-widest leading-none group-hover:text-white transition-colors"
-                    >García's</span
-                  >
-                </div>
-              </div>
-            </a>
-            <p
-              class="text-gray-400 text-sm leading-relaxed max-w-sm mx-auto md:mx-0"
-            >
-              Transformamos la industria con soluciones de ingeniería de
-              vanguardia. Calidad inquebrantable, seguridad absoluta y diseño
-              funcional.
-            </p>
-
-            <!-- Social Links with Phosphorescent Hovers -->
-            <div class="flex gap-4 justify-center md:justify-start">
-              <a
-                href="#"
-                class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 transition-all duration-300 group hover:bg-white/10 hover:-translate-y-1"
-                aria-label="Facebook"
-              >
-                <Facebook
-                  size={20}
-                  className="group-hover:text-[#1877F2] group-hover:drop-shadow-[0_0_8px_rgba(24,119,242,0.8)] transition-all duration-300"
-                />
-              </a>
-              <a
-                href="#"
-                class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 transition-all duration-300 group hover:bg-white/10 hover:-translate-y-1"
-                aria-label="Twitter"
-              >
-                <Twitter
-                  size={20}
-                  className="group-hover:text-[#1DA1F2] group-hover:drop-shadow-[0_0_8px_rgba(29,161,242,0.8)] transition-all duration-300"
-                />
-              </a>
-              <a
-                href="#"
-                class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 transition-all duration-300 group hover:bg-white/10 hover:-translate-y-1"
-                aria-label="LinkedIn"
-              >
-                <Linkedin
-                  size={20}
-                  className="group-hover:text-[#0A66C2] group-hover:drop-shadow-[0_0_8px_rgba(10,102,194,0.8)] transition-all duration-300"
-                />
-              </a>
-              <a
-                href="#"
-                class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 transition-all duration-300 group hover:bg-white/10 hover:-translate-y-1"
-                aria-label="Instagram"
-              >
-                <Instagram
-                  size={20}
-                  className="group-hover:text-[#E4405F] group-hover:drop-shadow-[0_0_8px_rgba(228,64,95,0.8)] transition-all duration-300"
-                />
-              </a>
-            </div>
-          </div>
-
-          <!-- Navigation Links (Span 2) -->
-          <div class="md:col-span-2 text-center md:text-left">
-            <h3
-              class="text-white font-bold mb-8 text-sm tracking-widest uppercase border-b border-white/10 pb-2 inline-block"
-            >
-              Explorar
-            </h3>
-            <ul class="space-y-4">
-              <li>
-                <a
-                  href="/"
-                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block flex items-center gap-2 group justify-center md:justify-start"
-                >
-                  <span
-                    class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-white group-hover:shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all"
-                  ></span>
-                  Inicio
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/servicios"
-                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block flex items-center gap-2 group justify-center md:justify-start"
-                >
-                  <span
-                    class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-white group-hover:shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all"
-                  ></span>
-                  Servicios
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/proyectos"
-                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block flex items-center gap-2 group justify-center md:justify-start"
-                >
-                  <span
-                    class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-white group-hover:shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all"
-                  ></span>
-                  Proyectos
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/contacto"
-                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block flex items-center gap-2 group justify-center md:justify-start"
-                >
-                  <span
-                    class="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-white group-hover:shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all"
-                  ></span>
-                  Contacto
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Services Links (Span 3) -->
-          <div class="md:col-span-3 text-center md:text-left">
-            <h3
-              class="text-white font-bold mb-8 text-sm tracking-widest uppercase border-b border-white/10 pb-2 inline-block"
-            >
-              Servicios
-            </h3>
-            <ul class="space-y-4">
-              <li>
-                <a
-                  href="/servicios"
-                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block group"
-                >
-                  Instalaciones Eléctricas
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/servicios"
-                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block group"
-                >
-                  Mantenimiento Industrial
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/servicios"
-                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block group"
-                >
-                  Proyectos Institucionales
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/servicios"
-                  class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block group"
-                >
-                  Consultoría Técnica
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Contact Info (Span 3) -->
-          <div class="md:col-span-3 text-center md:text-left">
-            <h3
-              class="text-white font-bold mb-8 text-sm tracking-widest uppercase border-b border-white/10 pb-2 inline-block"
-            >
-              Contacto
-            </h3>
-            <ul class="space-y-6">
-              <li class="group">
-                <div
-                  class="flex items-start gap-4 justify-center md:justify-start"
-                >
-                  <div
-                    class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors"
-                  >
-                    <MapPin
-                      className="w-5 h-5 text-gray-400 group-hover:text-[#F59E0B] group-hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.8)] transition-all duration-300"
-                    />
-                  </div>
-                  <div class="text-left">
-                    <span
-                      class="block text-xs text-gray-500 mb-1 uppercase tracking-wider"
-                      >Dirección</span
-                    >
-                    <span
-                      class="text-gray-300 text-sm leading-relaxed group-hover:text-white transition-colors"
-                      >Av. Tecnológico 2405, Piso 8,<br />Torre Empresarial,
-                      CDMX</span
-                    >
-                  </div>
-                </div>
-              </li>
-              <li class="group">
-                <div
-                  class="flex items-start gap-4 justify-center md:justify-start"
-                >
-                  <div
-                    class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors"
-                  >
-                    <Phone
-                      className="w-5 h-5 text-gray-400 group-hover:text-[#10B981] group-hover:drop-shadow-[0_0_8px_rgba(16,185,129,0.8)] transition-all duration-300"
-                    />
-                  </div>
-                  <div class="text-left">
-                    <span
-                      class="block text-xs text-gray-500 mb-1 uppercase tracking-wider"
-                      >Teléfono</span
-                    >
-                    <span
-                      class="text-gray-300 text-sm group-hover:text-white transition-colors"
-                      >+52 (55) 8900-1234</span
-                    >
-                  </div>
-                </div>
-              </li>
-              <li class="group">
-                <div
-                  class="flex items-start gap-4 justify-center md:justify-start"
-                >
-                  <div
-                    class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors"
-                  >
-                    <Mail
-                      className="w-5 h-5 text-gray-400 group-hover:text-[#8B5CF6] group-hover:drop-shadow-[0_0_8px_rgba(139,92,246,0.8)] transition-all duration-300"
-                    />
-                  </div>
-                  <div class="text-left">
-                    <span
-                      class="block text-xs text-gray-500 mb-1 uppercase tracking-wider"
-                      >Email</span
-                    >
-                    <span
-                      class="text-gray-300 text-sm group-hover:text-white transition-colors"
-                      >proyectos@instalacionesgarcias.com</span
-                    >
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Footer Bottom -->
-        <div
-          class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6"
-        >
-          <p class="text-xs text-gray-600 font-medium text-center md:text-left">
-            © 2025 Instalaciones García's S.A. de C.V. <span
-              class="hidden md:inline mx-2">|</span
-            > Todos los derechos reservados.
-          </p>
-          <div class="flex gap-8">
-            <a
-              href="/privacidad"
-              class="text-xs text-gray-600 hover:text-white transition-colors"
-              >Privacidad</a
-            >
-            <a
-              href="/terminos"
-              class="text-xs text-gray-600 hover:text-white transition-colors"
-              >Términos</a
-            >
-            <a
-              href="/sitemap"
-              class="text-xs text-gray-600 hover:text-white transition-colors"
-              >Mapa del Sitio</a
-            >
-          </div>
-        </div>
-      </div>
-    </footer>
+    <!-- Premium Footer -->
+    <Footer client:visible />
   </body>
 </html>
 
@@ -653,106 +241,98 @@ const { title = "Instalaciones García's" } = Astro.props;
   body {
     margin: 0;
     width: 100%;
-    /* height: 100%; Removed to prevent scrolling issues */
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #000;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 </style>
 
 <script>
-  // Navbar logic wrapper to support View Transitions
-  function setupNavbar() {
-    // Navbar scroll effect with Glassmorphism
+  function setupLayout() {
+    // Navbar Scroll Effect
     const navbar = document.getElementById("navbar");
     const navbarBg = document.getElementById("navbar-bg");
-
-    let lastScrollY = window.scrollY;
-    let ticking = false;
+    const scrollProgress = document.getElementById("scroll-progress");
 
     const onScroll = () => {
-      lastScrollY = window.scrollY;
+      const scrollY = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollY / maxScroll;
 
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (lastScrollY > 50) {
-            navbar?.classList.add("border-white/10");
-            navbar?.classList.remove("border-white/0");
+      // Update progress bar
+      if (scrollProgress) {
+        scrollProgress.style.transform = `scaleX(${progress})`;
+      }
 
-            navbarBg?.classList.remove("bg-black/0", "backdrop-blur-[0px]");
-            navbarBg?.classList.add("bg-black/80", "backdrop-blur-md");
-          } else {
-            navbar?.classList.remove("border-white/10");
-            navbar?.classList.add("border-white/0");
-
-            navbarBg?.classList.add("bg-black/0", "backdrop-blur-[0px]");
-            navbarBg?.classList.remove("bg-black/80", "backdrop-blur-md");
-          }
-          ticking = false;
-        });
-
-        ticking = true;
+      // Navbar styling
+      if (scrollY > 20) {
+        navbarBg?.classList.remove("bg-black/0", "backdrop-blur-[0px]");
+        navbarBg?.classList.add("bg-black/80", "backdrop-blur-md");
+        navbar?.classList.add("border-white/10");
+        navbar?.classList.remove("border-white/0");
+      } else {
+        navbarBg?.classList.add("bg-black/0", "backdrop-blur-[0px]");
+        navbarBg?.classList.remove("bg-black/80", "backdrop-blur-md");
+        navbar?.classList.remove("border-white/10");
+        navbar?.classList.add("border-white/0");
       }
     };
 
     window.addEventListener("scroll", onScroll);
 
-    // Mobile menu toggle
-    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    // Mobile Menu Logic
+    const menuBtn = document.getElementById("mobile-menu-button");
     const mobileMenu = document.getElementById("mobile-menu");
+    const menuItems = mobileMenu?.querySelectorAll("li");
 
-    const toggleMenu = () => {
-      mobileMenu?.classList.toggle("hidden");
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener("click", () => {
+        const isExpanded = menuBtn.getAttribute("aria-expanded") === "true";
+        menuBtn.setAttribute("aria-expanded", !isExpanded ? "true" : "false");
 
-      // Add solid background when menu is open
-      // Animate hamburger to X
-      const spans = mobileMenuButton?.querySelectorAll("span");
-
-      if (!mobileMenu?.classList.contains("hidden")) {
-        navbarBg?.classList.add("bg-black/95", "backdrop-blur-xl");
-
-        // Transform to X
-        if (spans && spans.length === 3) {
-          spans[0].classList.add("rotate-45", "translate-x-px");
-          spans[1].classList.add("opacity-0", "translate-x-2");
-          spans[2].classList.add("-rotate-45", "translate-x-px");
+        if (!isExpanded) {
+          // Open
+          mobileMenu.classList.remove("opacity-0", "pointer-events-none");
+          document.body.style.overflow = "hidden"; // Prevent scrolling
+          
+          // Animate items
+          menuItems?.forEach((item) => {
+            item.classList.remove("translate-y-4", "opacity-0");
+          });
+        } else {
+          // Close
+          mobileMenu.classList.add("opacity-0", "pointer-events-none");
+          document.body.style.overflow = ""; // Restore scrolling
+          
+          // Reset items
+          menuItems?.forEach((item) => {
+            item.classList.add("translate-y-4", "opacity-0");
+          });
         }
-      } else {
-        if (window.scrollY <= 50) {
-          navbarBg?.classList.remove("bg-black/95", "backdrop-blur-xl");
-        }
+      });
 
-        // Reset to hamburger
-        if (spans && spans.length === 3) {
-          spans[0].classList.remove("rotate-45", "translate-x-px");
-          spans[1].classList.remove("opacity-0", "translate-x-2");
-          spans[2].classList.remove("-rotate-45", "translate-x-px");
-        }
-      }
-    };
-
-    mobileMenuButton?.addEventListener("click", toggleMenu);
-
-    // Spotlight Effect Logic
-    const spotlightGroups = document.querySelectorAll(".spotlight-group");
-
-    spotlightGroups.forEach((group) => {
-      group.addEventListener("mousemove", (e) => {
-        const mouseEvent = e as MouseEvent;
-        const element = group as HTMLElement;
-
-        requestAnimationFrame(() => {
-          const rect = element.getBoundingClientRect();
-          const x = mouseEvent.clientX - rect.left;
-          const y = mouseEvent.clientY - rect.top;
-
-          element.style.setProperty("--mouse-x", `${x}px`);
-          element.style.setProperty("--mouse-y", `${y}px`);
+      // Close on link click
+      mobileMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          menuBtn.click();
         });
       });
-    });
+    }
   }
 
-  // Run on initial load
-  setupNavbar();
-
-  // Run on subsequent navigations
-  document.addEventListener("astro:page-load", setupNavbar);
+  // Run on load and navigation
+  setupLayout();
+  document.addEventListener("astro:page-load", setupLayout);
 </script>
