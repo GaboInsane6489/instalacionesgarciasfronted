@@ -47,6 +47,7 @@ const Footer = () => {
                 Icon={Facebook}
                 color="#1877F2"
                 shadowColor="rgba(24,119,242,0.6)"
+                ariaLabel="Visitar nuestra página de Facebook"
               />
               <SocialIcon
                 href="#"
@@ -54,12 +55,14 @@ const Footer = () => {
                 color="#E1306C"
                 gradient="linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)"
                 shadowColor="rgba(220,39,67,0.6)"
+                ariaLabel="Visitar nuestro perfil de Instagram"
               />
               <SocialIcon
                 href="#"
                 Icon={Linkedin}
                 color="#0A66C2"
                 shadowColor="rgba(10,102,194,0.6)"
+                ariaLabel="Visitar nuestro perfil de LinkedIn"
               />
             </div>
           </div>
@@ -164,10 +167,18 @@ const Footer = () => {
   );
 };
 
-const SocialIcon = ({ href, Icon, color, shadowColor, gradient }) => {
+const SocialIcon = ({
+  href,
+  Icon,
+  color,
+  shadowColor,
+  gradient,
+  ariaLabel,
+}) => {
   return (
     <motion.a
       href={href}
+      aria-label={ariaLabel}
       whileHover={{
         y: -5,
         scale: 1.1,

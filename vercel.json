@@ -25,7 +25,37 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://cdn.vercel-insights.com https://vercel.live; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; media-src 'self' https://cdn.pixabay.com data: blob:; connect-src 'self' https://vitals.vercel-insights.com https://vercel.live data: https:; frame-src 'self' https://vercel.live https://www.google.com; frame-ancestors 'none';"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://cdn.vercel-insights.com https://vercel.live data:; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; media-src 'self' https://cdn.pixabay.com data: blob:; connect-src 'self' https://vitals.vercel-insights.com https://vercel.live data: https: http://localhost:3000; frame-src 'self' https://vercel.live https://www.google.com; frame-ancestors 'none';"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Accept-Encoding",
+          "value": "br, gzip, deflate"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(js|css|json)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Content-Encoding",
+          "value": "br"
         }
       ]
     },

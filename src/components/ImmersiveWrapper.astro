@@ -1,67 +1,12 @@
 ---
 /**
  * ImmersiveWrapper Component
- * Renders a sticky video background and slots for content sections.
+ * Wrapper for transparent sections that reveal the global video background.
  */
-const { videoUrl } = Astro.props;
 ---
 
-<div class="relative w-full immersive-container">
-  <!-- Sticky Video Background Container -->
-  <div class="sticky top-0 h-screen w-full overflow-hidden -z-10">
-    <video
-      class="absolute inset-0 w-full h-full object-cover lazy-video"
-      muted
-      loop
-      playsinline
-      preload="none"
-      data-src={videoUrl}
-    >
-      <!-- Source will be set by JS -->
-    </video>
-    <!-- Overlay -->
-    <div class="absolute inset-0 bg-black/60"></div>
-  </div>
-
-  <!-- Content Sections Wrapper -->
-  <!-- The content scrolls OVER the sticky video -->
-  <div class="relative z-10 -mt-[100vh]">
+<div class="relative w-full">
+  <div class="relative z-10">
     <slot />
   </div>
 </div>
-
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const lazyVideos = document.querySelectorAll('video.lazy-video');
-
-    if ('IntersectionObserver' in window) {
-      const videoObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const video = entry.target;
-            
-            if (video instanceof HTMLVideoElement) {
-              const src = video.getAttribute('data-src');
-              
-              if (src && !video.src) {
-                video.src = src;
-                video.load();
-                video.play().catch(e => console.log("Autoplay prevented", e));
-              } else if (video.paused) {
-                 video.play().catch(e => console.log("Autoplay prevented", e));
-              }
-            }
-            // We don't unobserve because we might want to pause when out of view to save resources
-          } else {
-             const video = entry.target;
-             if (video instanceof HTMLVideoElement && !video.paused) {
-               video.pause();
-             }
-          }
-        });
-      }, { rootMargin: '200px' });
-
-      lazyVideos.forEach((video) => videoObserver.observe(video));
-    }
-  });
-</script>

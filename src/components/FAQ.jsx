@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, ChevronDown, Plus, Minus } from "lucide-react";
+import { CheckCircle2, Plus, Minus } from "lucide-react";
 
 const faqs = [
   {

@@ -36,6 +36,14 @@
   body {
     @apply bg-primary text-text-main;
   }
+
+  /* Fix for deprecated H1 font-size behavior in semantic elements */
+  article h1,
+  aside h1,
+  nav h1,
+  section h1 {
+    font-size: inherit;
+  }
 }
 
 /* Custom Scrollbar for Premium Feel */

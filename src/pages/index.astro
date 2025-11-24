@@ -3,7 +3,7 @@
 // IMPORTS - Componentes y utilidades necesarias
 // ============================================
 import Layout from "../layouts/Layout.astro";
-// VideoHero import removed
+import GlobalVideoBackground from "../components/GlobalVideoBackground.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import SolutionsGuide from "../components/SolutionsGuide.jsx";
 import HomeCarousel from "../components/HomeCarousel.jsx";
@@ -35,19 +35,14 @@ import mobileImage from "../assets/images/Construction1.webp";
   <!-- ============================================ -->
   <!-- FIXED VIDEO BACKGROUND -->
   <!-- ============================================ -->
-  <div class="fixed inset-0 w-full h-full -z-50 pointer-events-none">
-    <div class="absolute inset-0 bg-black/30 z-10"></div> <!-- Slight dark overlay -->
-    <video
-      autoplay
-      loop
-      muted
-      playsinline
-      poster={mobileImage.src}
-      class="w-full h-full object-cover"
-    >
-      <source src={videoLanding} type="video/mp4" />
-    </video>
-  </div>
+  <!-- ============================================ -->
+  <!-- ============================================ -->
+  <!-- GLOBAL VIDEO BACKGROUND -->
+  <!-- ============================================ -->
+  <GlobalVideoBackground
+    videoUrl={videoLanding}
+    mobileImage={mobileImage.src}
+  />
 
   <!-- ============================================ -->
   <!-- HERO SECTION - CTA principal -->
@@ -91,7 +86,10 @@ import mobileImage from "../assets/images/Construction1.webp";
   <!-- ============================================ -->
   <!-- SERVICES SECTION - Grid de servicios principales -->
   <!-- ============================================ -->
-  <section class="py-24 relative overflow-hidden z-10">
+  <!-- ============================================ -->
+  <!-- SERVICES SECTION - Grid de servicios principales -->
+  <!-- ============================================ -->
+  <section class="py-24 relative overflow-hidden z-10 bg-primary/95 backdrop-blur-sm">
     <!-- Decoración de fondo -->
     <div
       class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-transparent pointer-events-none"
@@ -139,7 +137,7 @@ import mobileImage from "../assets/images/Construction1.webp";
   <!-- ============================================ -->
   <!-- SOLUTIONS GUIDE - Guía interactiva de soluciones -->
   <!-- ============================================ -->
-  <SolutionsGuide client:visible />
+  <SolutionsGuide client:idle />
 
   <!-- ============================================ -->
   <!-- NEW HOME CAROUSEL - Galería destacada -->
@@ -149,7 +147,7 @@ import mobileImage from "../assets/images/Construction1.webp";
   <!-- ============================================ -->
   <!-- IMMERSIVE SECTIONS - Video compartido -->
   <!-- ============================================ -->
-  <ImmersiveWrapper videoUrl="https://cdn.pixabay.com/video/2025/03/23/266956_large.mp4">
+  <ImmersiveWrapper>
     <!-- Section 1: Innovation -->
     <section class="min-h-screen flex items-center justify-center py-24">
       <div class="container mx-auto px-6">
@@ -235,7 +233,7 @@ import mobileImage from "../assets/images/Construction1.webp";
   <!-- PROCESS SECTION - Nuestro proceso de trabajo -->
   <!-- ============================================ -->
   <section
-    class="py-24 bg-secondary border-t border-white/5 relative overflow-hidden"
+    class="py-24 bg-secondary border-t border-white/5 relative overflow-hidden z-10"
   >
     <div
       class="absolute top-0 right-0 w-[600px] h-[600px] bg-white/[0.02] rounded-full blur-3xl pointer-events-none"
@@ -324,7 +322,7 @@ import mobileImage from "../assets/images/Construction1.webp";
   <!-- WHY US SECTION - Valores y diferenciadores -->
   <!-- ============================================ -->
   <section
-    class="py-24 bg-primary border-t border-white/5 relative overflow-hidden"
+    class="py-24 bg-primary border-t border-white/5 relative overflow-hidden z-10"
   >
     <div
       class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-white/[0.02] rounded-full blur-3xl pointer-events-none"
@@ -418,7 +416,7 @@ import mobileImage from "../assets/images/Construction1.webp";
   <!-- TESTIMONIALS SECTION - Opiniones de clientes -->
   <!-- ============================================ -->
   <section
-    class="py-24 bg-secondary border-t border-white/5 relative overflow-hidden"
+    class="py-24 bg-secondary border-t border-white/5 relative overflow-hidden z-10"
   >
     <div
       class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-white/[0.02] rounded-full blur-3xl pointer-events-none"
@@ -534,7 +532,7 @@ import mobileImage from "../assets/images/Construction1.webp";
   <!-- ============================================ -->
   <!-- STATS SECTION - Números que respaldan nuestra trayectoria -->
   <!-- ============================================ -->
-  <section class="py-20 bg-primary border-t border-white/5">
+  <section class="py-20 bg-primary border-t border-white/5 z-10 relative">
     <div class="container mx-auto px-6">
       <div
         class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center fade-in-section"
@@ -596,13 +594,13 @@ import mobileImage from "../assets/images/Construction1.webp";
   <!-- ============================================ -->
   <!-- FAQ SECTION - Preguntas frecuentes -->
   <!-- ============================================ -->
-  <FAQ client:visible />
+  <FAQ client:idle />
 
   <!-- ============================================ -->
   <!-- CTA SECTION - Llamada a la acción final -->
   <!-- ============================================ -->
   <section
-    class="py-24 bg-primary border-t border-white/5 relative overflow-hidden"
+    class="py-24 bg-primary border-t border-white/5 relative overflow-hidden z-10"
   >
     <!-- Decoración de fondo -->
     <div
@@ -680,6 +678,9 @@ import mobileImage from "../assets/images/Construction1.webp";
           if (entry.target.querySelector(".counter-value")) {
             animateCounters(entry.target);
           }
+        } else {
+          // Remove class when out of view to replay animation
+          entry.target.classList.remove("is-visible");
         }
       });
     }, observerOptions);

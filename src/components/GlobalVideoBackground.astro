@@ -1,0 +1,72 @@
+---
+/**
+ * GlobalVideoBackground Component
+ * Renders a fixed video background that sits behind all content.
+ * Visibility is controlled by the background color of the sections above it.
+ * On mobile devices, shows a static image instead of video for performance.
+ */
+const { videoUrl, mobileImage } = Astro.props;
+---
+
+<div class="fixed inset-0 w-full h-full -z-50 pointer-events-none">
+  <!-- Dark Overlay for better text contrast -->
+  <div class="absolute inset-0 bg-black/40 z-10"></div>
+
+  <!-- Background Video (Desktop only, lazy loaded) -->
+  <video
+    class="lazy-video absolute inset-0 w-full h-full object-cover hidden md:block"
+    muted
+    loop
+    playsinline
+    preload="none"
+    poster={mobileImage}
+    data-src={videoUrl}
+  >
+    <source data-src={videoUrl} type="video/mp4" />
+    <track kind="captions" srclang="es" label="Español" />
+  </video>
+
+  <!-- Mobile Static Image (Always visible on mobile) -->
+  <img
+    src={mobileImage}
+    alt="Background"
+    class="absolute inset-0 w-full h-full object-cover md:hidden"
+    loading="eager"
+    fetchpriority="high"
+  />
+</div>
+
+<script>
+  // Lazy load video on desktop only
+  function initLazyVideo() {
+    const video = document.querySelector('.lazy-video');
+    
+    if (!video || window.innerWidth < 768) return; // Skip on mobile
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const videoElement = entry.target as HTMLVideoElement;
+          const source = videoElement.querySelector('source');
+          
+          if (source && source.dataset.src) {
+            source.src = source.dataset.src;
+            videoElement.src = videoElement.dataset.src || '';
+            videoElement.load();
+            
+            // Auto-play after loading
+            videoElement.play().catch(e => console.log('Autoplay prevented:', e));
+          }
+          
+          observer.unobserve(videoElement);
+        }
+      });
+    }, { rootMargin: '100px' });
+    
+    observer.observe(video);
+  }
+  
+  // Run on load and on Astro page transitions
+  initLazyVideo();
+  document.addEventListener('astro:page-load', initLazyVideo);
+</script>

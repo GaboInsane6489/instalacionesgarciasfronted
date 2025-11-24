@@ -54,7 +54,7 @@ const HomeCarousel = () => {
   if (projects.length === 0) return null;
 
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section className="py-32 relative overflow-hidden bg-primary z-10">
       <div className="container mx-auto px-6">
         <div className="mb-16 text-center">
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
